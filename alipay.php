@@ -2,8 +2,8 @@
 /*
 	Plugin Name:集成支付宝
 	Plugin URI:http://www.waisir.com/wp-alipay
-	Description:<strong>集成支付宝</strong>,正在开发中...预计11年11月11日上线,请等待...
-	Version:1.0.0
+	Description:<strong>集成支付宝</strong>,正在开发中...插件开发基本完成,但由于插件的特殊性,安全漏洞尚未修复,由于中途接到一个比较急的项目,被迫延期发布.
+	Version:1.0.1
 	Author:歪SIR
 	Author URI:http://www.waisir.com
 	License: GPLv2 or later
