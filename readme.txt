@@ -16,7 +16,7 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 * [插件主页-The plug-in page on my blog](http://www.waisir.com/wp-alipay "插件主页")
 * [插件截图-Screenshots](http://wordpress.org/extend/plugins/alipay/screenshots/)
 * [反馈-Feed back](http://wordpress.org/tags/alipay "Feed Back") 
-* [相关插件-WP-Pay]http://wordpress.org/extend/plugins/wp-pay/ "富商城支持")
+* [相关插件-WP-Pay](http://wordpress.org/extend/plugins/wp-pay/ "富商城支持")
 * [相关插件-WP-Alipay](http://wordpress.org/extend/plugins/wp-alipay/ "")
 
 
