@@ -9,12 +9,13 @@ Stable tag: 1.3.2
 A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with advertisement,links and some else with blog features automaticly.
 
 == Description ==
+= 写在前面, 目前处于插件测试阶段, 很期待您的反馈! =
 
 = 链接表 = 
 * [歪世界-Home page of the Author](http://www.waisir.com/ "作者主页")
 * [插件主页-The plug-in page on my blog](http://www.waisir.com/wp-alipay "插件主页")
-* [插件截图-Screenshots](http://wordpress.org/extend/plugins/wp_alipay/screenshots/)
-* [反馈-Feed back](http://wordpress.org/tags/wp_alipaye "Feed Back") 
+* [插件截图-Screenshots](http://wordpress.org/extend/plugins/alipay/screenshots/)
+* [反馈-Feed back](http://wordpress.org/tags/alipay "Feed Back") 
 * [相关插件-WP-Pay]http://wordpress.org/extend/plugins/wp-pay/ "富商城支持")
 * [相关插件-WP-Alipay](http://wordpress.org/extend/plugins/wp-alipay/ "")
 
