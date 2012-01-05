@@ -71,6 +71,7 @@ $tip
 <p class="ws_alipay_widget_char">{&nbsp;火爆招商&nbsp;}</p>
 <p class="ws_alipay_widget_char">{&nbsp;虚位以待&nbsp;}</p>
 <p class="ws_alipay_widget_char">自助广告&nbsp;:&nbsp;{$this->choosePrice($ins)}</p>
+<input type="button" value="试一试" name="ws_alipay_ad_preview" class="ws_alipay_widget_try"/>
 </div>
 
 <div class="$formcls" style="display:none;width:{$ins['imgWidth']}px;height:{$ins['imgHeight']}px;">

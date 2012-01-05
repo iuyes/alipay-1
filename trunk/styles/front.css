@@ -1,4 +1,4 @@
-.ws_alipay_widget_wrap{width:auto;margin:0 auto;padding:0;border:none;text-align:center;position:absolute;font-family:微软雅黑,Microsoft YaHei}
+.ws_alipay_widget_wrap{width:auto;margin:0 auto;padding:0;border:none;text-align:center;position:relative;font-family:微软雅黑,Microsoft YaHei}
 .ws_alipay_widget_form, .ws_alipay_widget_show{position:absolute;left:0;top:0;margin:0 auto;padding:0;border:none;text-align:center;background:#F90}
 .ws_alipay_widget_form{opacity:0.85}
 .ws_alipay_widget_show{display:block;background:none}
