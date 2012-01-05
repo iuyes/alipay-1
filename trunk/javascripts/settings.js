@@ -471,7 +471,9 @@ function ws_alipay_get_json(){
 			'table': $this.tabname,
 		},	
 		success:function(data){ 
+			
 			data = ws_alipay_data_pre( data );
+			
 			ws_alipay_json_to_form(  data['data'] );
 		}	
 	});
@@ -550,7 +552,7 @@ function ws_alipay_table_edit(prival){
 			'single':'1'
 		},	
 		success:function(data){
-			
+			//alert(data);
 			//Extra fields filter
 			//$('#' + $this.id.formMore).find('input[name=name]').parent().after(data['extra']);
 			ws_alipay_form_extra( data['extra'] );
@@ -662,6 +664,8 @@ function ws_alipay_label_input_html( $item ){
 }
 
 function ws_alipay_table_update( $data ){
+
+
 	$.ajax({
 		data: $data +
 			   '&ws_security_check='+ $ws_alipay_security_code +
@@ -669,6 +673,12 @@ function ws_alipay_table_update( $data ){
 			   '&where=' + $this.primaryKey + '=' + $this.currentKey +
 			   '&fields_refer=' + $this.arr.fields_refer
 				,
+		/*data:{	'data':$data,
+				'ws_security_check':$ws_alipay_security_code,
+				'action':'78015',
+				'table':$this.tabname,
+				'where':$this.primaryKey + '=' + $this.currentKey,
+				'fields_refer':$this.arr.fields_refer},	*/	
 		type:'post',
 		success:function(data){
 			$('.ws_alipay_loading_more').fadeOut(500);
@@ -890,6 +900,8 @@ $('#ws_alipay_table_more_form').live('submit',function(){
 		}
 	}
 	var $data = $(this).serialize();
+	//var $data = $(this).serializeArray();
+	
 	$('.ws_alipay_loading_more').show();
 	ws_alipay_table_update( $data )
 	return false;

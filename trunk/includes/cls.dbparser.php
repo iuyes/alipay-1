@@ -44,6 +44,7 @@ class ws_alipay_db_parser{
 			
 		}
 		
+		$oriKeys = array_keys($proInfo);
 		
 
 		//$proInfo	 = (array)$proInfo[0];
@@ -184,14 +185,26 @@ class ws_alipay_db_parser{
 		//下面是关键代码
 		//SHORTCODE FILTER
 		$patterns = array_keys( $proInfo );
+		$patterns2 = array_keys( $proInfo );
 		
-		foreach( $patterns as &$value ){ $value = "@\[$value\]@i"; }
+		foreach( $patterns as &$value ){ 
+			if( in_array($value,$oriKeys))
+				$value = "@\[out_{$value}\]@i";
+			else
+				$value = "@\[{$value}\]@i"; 	
+		}
+		
+		foreach( $patterns2 as &$value ){ 
+			$value = "@\[{$value}\]@i"; 	
+		}
+		
+		
 		
 		//去除$proInfo子元素的数组元素,否则会出现类型错误.
 		foreach( $proInfo as &$value ){ if(is_array($value))$value = ""; }
 	
 		$this->ret = preg_replace( $patterns, $proInfo, $css.$html1.$js);
-		
+		$this->ret = preg_replace( $patterns2, $proInfo, $this->ret);
 		
 		
 	}//END OF FN	
