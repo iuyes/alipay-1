@@ -79,7 +79,7 @@ $tip
 <div class="ws_alipay_widget_form_wrap ws_alipay_buy_wrap"><!--3-->
 <form method="POST" target="_blank">
 <p>
-<label>粘贴入您的广告图片或Flash地址</label>
+<label>粘贴入您的广告图片地址</label>
 <input type="text" name="ws_alipay_ad_preview_src" class="ws_alipay_buy_imgSrc"/>
 </p>
 
