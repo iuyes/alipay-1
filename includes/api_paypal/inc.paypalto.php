@@ -11,6 +11,8 @@ unset ($ws_payto_para);
 
 $AMT = $p['price']*$p['num'];
 
+!empty($p['showurl']) || $p['showurl'] = get_bloginfo('url');
+
 $parameter = array(
 	//''			=> '',
 	//商品名
