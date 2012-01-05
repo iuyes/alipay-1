@@ -1,18 +1,22 @@
 <?php 
 
 //activate
+if(!function_exists('ws_alipay_activate')):
 function ws_alipay_activate(){
 	update_option('ws_alipay_security_code', md5(time()));
 	ws_alipay_db_create();
 	
 }
 //create table
-
+endif;
+if(!function_exists('ws_alipay_db_create')):
 function ws_alipay_db_create(){
 	include_once('cls.db.php');
 }
 
 //add a menu
+endif;
+if(!function_exists('ws_alipay_menu_constructor')):
 function ws_alipay_menu_constructor(){
 	ws_alipay_db_create();
 	$page = add_options_page(
@@ -26,16 +30,22 @@ function ws_alipay_menu_constructor(){
 	add_action('admin_print_styles-' . $page, 'ws_alipay_admin_header');
 }
 //show menu settings page
+endif;
+if(!function_exists('ws_alipay_show_settings_page')):
 function ws_alipay_show_settings_page(){
 	include('tpl.settings.php');	
 }
 
 //admin init
+endif;
+if(!function_exists('ws_alipay_admin_init')):
 function ws_alipay_admin_init() {
     wp_register_script('ws_alipay_settings_js', WS_ALIPAY_URL . '/javascripts/settings.js',array('jquery') );
 	wp_register_style ('ws_aplipay_settings_css', WS_ALIPAY_URL . '/styles/settings.css');
 }
 
+endif;
+if(!function_exists('ws_alipay_init')):
 function ws_alipay_init() {
 
 	if(!defined('WS_ALIPAY_NAME_EN')) 
@@ -57,12 +67,16 @@ function ws_alipay_init() {
 	wp_enqueue_style('ws_alipay_front_css');
 }
 //header of my settings page
+endif;
+if(!function_exists('ws_alipay_admin_header')):
 function ws_alipay_admin_header() {
 	wp_enqueue_script('ws_alipay_settings_js');
 	wp_enqueue_style ('ws_aplipay_settings_css');
 }
 
 //add a settings link to the plugins list
+endif;
+if(!function_exists('ws_alipay_settings_link')):
 function ws_alipay_settings_link($links){
 	$links[] = '<a href="'. ALIPAY_SETTINGS_LINK .'">'. __('Settings') .'</a>';
 	$links[] = '<a href="http://www.waisir.com/donate" target="_blank"><img src="'.WS_ALIPAY_IMG_URL.'/btn_donate_SM.gif"></a>';
@@ -70,11 +84,14 @@ function ws_alipay_settings_link($links){
 }
 
 //load the languages pack
+endif;
+if(!function_exists('ws_alipay_languages')):
 function ws_alipay_languages(){
 	load_plugin_textdomain( 'wsali', false, WS_ALIPAY_NAME_EN. '/i18n' );	
 }
 
-
+endif;
+if(!function_exists('ws_alipay_register_taxonomy')):
 function ws_alipay_register_taxonomy(){
 	global $wp_rewrite;
 	$catname = '商品分类';
@@ -110,14 +127,21 @@ function ws_alipay_register_taxonomy(){
 }
 
 //create security code
+endif;
+if(!function_exists('ws_alipay_security_code')):
 function ws_alipay_security_code(){
 	return wp_create_nonce(get_option('ws_alipay_security_code'));
 }
+
+endif;
+if(!function_exists('ws_alipay_security_check')):
 function ws_alipay_security_check(){
 	check_admin_referer(get_option('ws_alipay_security_code'),'ws_security_check');	
 }
 
 //short code parse
+endif;
+if(!function_exists('ws_alipay_shortcode_parser')):
 function ws_alipay_shortcode_parser( $atts ){
 	$ws_alipay_show_return='';
 	
@@ -136,6 +160,8 @@ function ws_alipay_shortcode_parser( $atts ){
 	return $output->ret;
 }
 
+endif;
+if(!function_exists('ws_alipay_show')):
 function ws_alipay_show( $proid = 0 ){
 	$ws_alipay_show_return='';
 	global $ws_alipay_in_class_proid;
@@ -155,6 +181,8 @@ function ws_alipay_show( $proid = 0 ){
  *@mix array or string
  *=add stripslashes
  */
+ endif;
+if(!function_exists('ws_alipay_stripslashes')):
 function ws_alipay_stripslashes( &$mix ){
 	if( is_string( $mix ) ){
 		$mix = stripslashes(  $mix);	
@@ -171,6 +199,8 @@ function ws_alipay_stripslashes( &$mix ){
  *@pattern original
  *=pattern with /
  */
+ endif;
+if(!function_exists('ws_alipay_preg_pre')):
 function ws_alipay_preg_pre( $str ){
 	//正则表达式的特殊符号
 	$preg_arr = array('\\','*','$','+','+','.','(',')','{','}','[',']','^','?','|');
@@ -194,6 +224,8 @@ function ws_alipay_preg_pre( $str ){
  *=strip the /r /n /r/n
  *=the array without empty value
  */
+ endif;
+if(!function_exists('ws_alipay_filter_empty')):
 function ws_alipay_filter_empty( $mix ){
 	if ( !is_array( $mix ) ) return $mix;
 	$ret = array();
@@ -216,6 +248,8 @@ function ws_alipay_filter_empty( $mix ){
  *=(string)array with sep
  *
  */
+ endif;
+if(!function_exists('ws_alipay_array_reduce')):
 function ws_alipay_array_reduce( $arr, $sep ){
 	$last = array_pop( $arr );
 	$ret = '';
@@ -231,6 +265,8 @@ function ws_alipay_array_reduce( $arr, $sep ){
  *@string with quotes
  *=string without quotes
  */
+ endif;
+if(!function_exists('ws_alipay_esc_quotes')):
 function ws_alipay_esc_quotes( $s ){
 	return preg_replace( '@[\"\']@', '' , $s);
 }
@@ -240,6 +276,8 @@ function ws_alipay_esc_quotes( $s ){
  *@param $arr_src	:the array with key and value
  *=return			:the array with key by 1st array
  */
+ endif;
+if(!function_exists('ws_alipay_no_empty')):
 function ws_alipay_no_empty( $arr_field, $arr_src ){
 	$arr_field = array_flip( $arr_field );
 	foreach( $arr_field as &$v ){ $v = ''; }
@@ -251,6 +289,8 @@ function ws_alipay_no_empty( $arr_field, $arr_src ){
  *@param $name		:field's name( the selectname)
  *=return html 
  */
+ endif;
+if(!function_exists('ws_alipay_select_yes_no_html')):
 function ws_alipay_select_yes_no_html( $val, $name ){
 	$html = '<select name="'.$name.'">';
 	
@@ -270,6 +310,8 @@ function ws_alipay_select_yes_no_html( $val, $name ){
  *@param $src		:almost the form input's value
  *=return html
  */
+ endif;
+if(!function_exists('ws_alipay_input_html')):
 function ws_alipay_input_html( $show, $src ){
 	$html = '';
 	foreach( $show as $k=>$arr_v ){
@@ -303,6 +345,8 @@ function ws_alipay_input_html( $show, $src ){
  *@param $set_name		:the field name in option nameed ws_alipay_settings_api
  *=return $set_value  or null
  */
+ endif;
+if(!function_exists('ws_alipay_get_setting')):
 function ws_alipay_get_setting( $set_name ){
 	if( isset($GLOBALS['ws_alipay_settings_api_json']) ){
 		$set_json = $GLOBALS['ws_alipay_settings_api_json'];
@@ -315,13 +359,16 @@ function ws_alipay_get_setting( $set_name ){
 	return $set_arr[$set_name];
 }
 
+endif;
+if(!function_exists('ws_alipay_get_settings')):
 function ws_alipay_get_settings(){
 	$set_json = get_option( 'ws_alipay_settings_api' );
 	$set_arr  = json_decode( $set_json, true );
 	return $set_arr;
 }
 
-
+endif;
+if(!function_exists('ws_alipay_show_tip')):
 function ws_alipay_show_tip( $info_code ,$trano = '' ){
 	include( 'tpl.payto.php' );
 	$ret  = '';
@@ -332,6 +379,8 @@ function ws_alipay_show_tip( $info_code ,$trano = '' ){
 	return $ret;	
 }
 
+endif;
+if(!function_exists('ws_alipay_show_url')):
 function ws_alipay_show_url( $info_code, $trano = '' ){
 	$info_code = strtolower($info_code);
 	//$nonce = wp_create_nonce('ws_alipay_tip_sign');
@@ -342,6 +391,8 @@ function ws_alipay_show_url( $info_code, $trano = '' ){
 	return $ret;
 }
 
+endif;
+if(!function_exists('ws_alipay_urlDecodeDeep')):
 function ws_alipay_urlDecodeDeep( $arr , $_input_charset = '' ,$_output_charset = '' ){
 	foreach( $arr as &$v ){
 		$v = urldecode( $v );	
@@ -359,6 +410,8 @@ function ws_alipay_urlDecodeDeep( $arr , $_input_charset = '' ,$_output_charset 
  * @param $_input_charset 输入的编码格式
  * return 编码后的字符串
  */
+ endif;
+if(!function_exists('ws_alipay_charsetEncode')):
 function ws_alipay_charsetEncode($input,$_output_charset ,$_input_charset) {
 	$output = "";
 	if(!isset($_output_charset) )$_output_charset  = $_input_charset;
@@ -380,6 +433,8 @@ function ws_alipay_charsetEncode($input,$_output_charset ,$_input_charset) {
  * @param $_input_charset 输入的解码格式
  * return 解码后的字符串
  */
+ endif;
+if(!function_exists('ws_alipay_charsetDecode')):
 function ws_alipay_charsetDecode($input,$_input_charset ,$_output_charset) {
 	$output = "";
 	if(!isset($_input_charset) )$_input_charset  = $_input_charset ;
@@ -393,6 +448,8 @@ function ws_alipay_charsetDecode($input,$_input_charset ,$_output_charset) {
 	return $output;
 }
 
+endif;
+if(!function_exists('ws_alipay_noEmpty')):
 function ws_alipay_noEmpty( $arr_fields, $arr_dateSrc ){
 	$arr_fields = array_flip($arr_fields);
 	foreach( $arr_fields as &$v ){ $v = ''; }
@@ -404,6 +461,8 @@ function ws_alipay_wRCheck( $name, $valin, $valout , $default = false){
 	return 'name="'.$name.'" value="'.$valin.'" '.$checked.'';
 }
 
+endif;
+if(!function_exists('ws_alipay_validateFormat')):
 function ws_alipay_validateFormat($value, $type){
 	if( empty($value) || empty($type) )
 		return false;
@@ -432,6 +491,8 @@ function ws_alipay_validateFormat($value, $type){
 	
 }
 
+endif;
+if(!function_exists('ws_alipay_makeQueryArr')):
 function ws_alipay_makeQueryArr( $url = '', $query = ''){
 	if( $url == '' && $query == '' )
 		return ;
@@ -463,6 +524,8 @@ function ws_alipay_makeQueryArr( $url = '', $query = ''){
 }
 
 //JUST FOR SETTINGS TPLS
+endif;
+if(!function_exists('ws_alipay_label_input_html')):
 function ws_alipay_label_input_html( $htmls, $filter_prefix = NULL ){
 	
     $ret = '';
@@ -541,7 +604,8 @@ function ws_alipay_label_input_html( $htmls, $filter_prefix = NULL ){
 //	uasort( $arr , 'ws_alipay_arraySortByKey_core');
 //	
 //}
-
+endif;
+if(!function_exists('ws_alipay_sortByOneKey')):
 function ws_alipay_sortByOneKey(array $array, $key, $default = 0, $asc = true) {
 
 	
@@ -565,6 +629,8 @@ function ws_alipay_sortByOneKey(array $array, $key, $default = 0, $asc = true) {
     return $result;
 }
 
+endif;
+if(!function_exists('ws_alipay_unitToDay')):
 
 function ws_alipay_unitToDay( $num, $unit = 'pricePerDay' ){
 
@@ -585,6 +651,8 @@ function ws_alipay_unitToDay( $num, $unit = 'pricePerDay' ){
 }
 
 //@offset: -8,0,8
+endif;
+if(!function_exists('ws_alipay_num2time')):
 function ws_alipay_num2time( $offset ){
 	if( empty($offset)) return '+0:00';
 	$fh = ($offset>=0)?'+':'-';
@@ -593,4 +661,5 @@ function ws_alipay_num2time( $offset ){
 	$offset = intval(abs($offset));
 	return $fh. $offset. $fl;	
 }
+endif;
 ?>

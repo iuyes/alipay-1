@@ -139,7 +139,11 @@ if( isset($_REQUEST['action']) && $_REQUEST['action'] !== '' ){
 
 //out put
 
+
 $arr_ret = json_encode($arr_ret);
+
+
+
 echo $arr_ret;
 ############################################################################
 //functions section
@@ -219,17 +223,7 @@ function ws_alipay_get_data(){
 	
 	if( isset( $_REQUEST['single']) ){//只读1条记录,即查看详情或编
 		/////////////////////////////////////////////////////////////////////////////////////
-//		
-//		$foo =  array('bar','测试条目1','priority'=>11,'transport'=>FALSE,'visible'=>true,'pos'=>array('name'=>'name','rel'=>'before'),'type'=>'select','options'=>array('0'=>'关闭','1'=>'开启'));
-//	
-//		$json = addslashes(json_encode($foo));
-//		update_metadata( $wpdb->wsaliproductsmetatype, 26, 'barJSON', $json );
-//		
-//		$foo =  array('foo','测试条目2','transport'=>FALSE,'visible'=>1,'pos'=>array('name'=>'name','rel'=>'before'),'type'=>'select','options'=>array('0'=>'关闭','1'=>'开启'));
-//	
-//		
-//		$json =addslashes(json_encode($foo));
-//		update_metadata( $wpdb->wsaliproductsmetatype, 26, 'fooJSON', $json );
+
 		/////////////////////////////////////////////////////////////////////////////////////
 		//GET the add-on fields
 		$metas = get_metadata( $wpdb->{'wsali'.$wsali_dbLoader['table'].'metatype'}, $wsali_dbLoader['wherev'],'', true);
@@ -318,7 +312,7 @@ function ws_alipay_update_data(){
 	
 	//HERE IS NECESSARY FOR THAT $wpdb->update WILL REGARG THE / AS THE ENTITIES
 	//IF USE THE $ws_alipay_db_fields IN SQL DIRECTELY, WE'LL NOT STRIOSLASHES!!
-	
+
 	
 	//$a = preg_split('/=/',$_REQUEST['where']);
 	$wh = array( $wsali_dbLoader['wherek']=>$wsali_dbLoader['wherev'] );
