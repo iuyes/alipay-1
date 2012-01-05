@@ -26,6 +26,8 @@ $(function(){//BOJQ
 
 		open( $URI );
 	});
+	
+	
 });//EOJQ
 
 
