@@ -31,7 +31,7 @@ require_once( $dirParent . 'cfg.config.php' );
 
 $returnURL = WS_ALIPAY_URL . "/includes/api_paypal/inc.paypal_return.php?currencyCodeType=USD&paymentType=Sale";
 
-$cancelURL = "";//"$url/api_paypal/inc.paypal.php?paymentType=Sale" ;
+$cancelURL = "";//WS_ALIPAY_URL . "/includes/api_paypal/inc.paypal.php?paymentType=Sale" ;
 
 $paypal_gateway = 'https://www.paypal.com/webscr&';
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
