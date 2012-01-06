@@ -540,6 +540,7 @@ function ws_alipay_table_copy(prival){
 
 function ws_alipay_table_edit(prival){
 	$.ajax({
+		dataType:'HTML',
 		data:{
 			'ws_security_check':$ws_alipay_security_code,
 			'action':'78009',
@@ -552,7 +553,9 @@ function ws_alipay_table_edit(prival){
 			'single':'1'
 		},	
 		success:function(data){
-			//alert(data);
+			//data = data.replace(/\[\!--HERE_IS_A_SPACE--\]/g,' ');
+			data = data.replace(/\n/g,' ');
+			eval( 'var data=' + data );
 			//Extra fields filter
 			//$('#' + $this.id.formMore).find('input[name=name]').parent().after(data['extra']);
 			ws_alipay_form_extra( data['extra'] );

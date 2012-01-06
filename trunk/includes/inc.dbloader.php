@@ -5,7 +5,7 @@ define('DR',DIRECTORY_SEPARATOR);
 ############################################################################
 require_once( SITE_ROOT.DR.'wp-load.php');
 require_once('cfg.config.php');
-header("Content-Type: text/html; charset=" . WS_ALIPAY_CHARSET);
+header("Content-Type: text/plain; charset=" . WS_ALIPAY_CHARSET);
 ############################################################################
 
 //Die if load thfe page directly
@@ -141,7 +141,6 @@ if( isset($_REQUEST['action']) && $_REQUEST['action'] !== '' ){
 
 
 $arr_ret = json_encode($arr_ret);
-
 
 
 echo $arr_ret;
