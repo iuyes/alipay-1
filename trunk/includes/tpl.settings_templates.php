@@ -86,7 +86,7 @@ $(function(){//THE BEGINNING OF JQ
 </script>
 
 <input type="button" value="添加模版" id="ws_alipay_table_add"/>
-
+<a href="http://www.waisir.com/alipay-fast-demo" target="_blank"><input type="button" value="模版下载" id="ws_alipay_table_tpl-download"/></a>
 
 <div id="ws_alipay_item_more" style="display:none">
 <div class="ws_alipay_item_more_main_wrap">
