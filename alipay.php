@@ -3,7 +3,7 @@
 Plugin Name:集成支付宝
 Plugin URI:http://www.waisir.com/wp-alipay
 Description:<strong>集成支付宝</strong>，可以在后台添加商品信息，并在相应页面输入短代码直接调用商品
-Version:1.3.5
+Version:1.3.6
 Author:歪SIR
 Author URI:http://www.waisir.com
 License: GPLv2 or later
