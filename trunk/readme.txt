@@ -4,7 +4,7 @@ Donate link: http://www.waisir.com/donate
 Tags: alipay,tenpay,paypal,e-commerce,cart,shop,支付宝,财付通
 Requires at least: 2.7.0
 Tested up to: 3.3.1
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 
 A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with advertisement,links and some else with blog features automaticly.
 
@@ -89,6 +89,9 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 
 
 == Changelog ==
+
+= Version 1.3.6 (2012-01-07) =
+* 修复了WIN_client后台常规设置面板布局错乱
 
 = Version 1.3.5 (2012-01-06) =
 * 修复了linux主机下模版读取JSON格式错误

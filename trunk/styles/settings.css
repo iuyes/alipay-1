@@ -49,9 +49,9 @@
 /**************API SETTINGS TAB***************/
 .ws_alipay_api_div{width:600px;margin:10px auto}
 #ws_alipay_api_form{width:95%;margin:50px auto;position:relative}
-.ws_alipay_api_div div{display:block;width:100%;height:30px;}
-.ws_alipay_api_div label{display:block;float:left;text-align:right;width:30%;line-height:2.5em;font-weight:150}
-.ws_alipay_api_div input, .ws_alipay_api_div select{display:block;float:left;width:60%!important;margin-right:50px;}
+.ws_alipay_api_div div{display:block;width:100%;height:30px;clear:both}
+.ws_alipay_api_div label{display:block;float:left;text-align:right;width:30%;line-height:2.5em;font-weight:150;font-weight:100;margin-right:10px}
+.ws_alipay_api_div input, .ws_alipay_api_div select{display:block;float:left;width:55%!important;margin-right:50px;}
 
 #ws_alipay_api_form #ws_alipay_api_update{float:right;width:100px!important;margin-right:50px}
 
@@ -70,7 +70,7 @@
 .ws_alipay_table tbody input[type=checkbox]{width:auto;margin-left:8px}
 /********************************************/
 .ws_alipay_table_form div{float:left;width:50%;height:30px;margin-top:4px;padding:0;border:none;}
-.ws_alipay_table_form label{display:block;float:left;width:30%;line-height:2em;font-size:13px;padding-left:5%;text-align:left;}
+.ws_alipay_table_form label{display:block;float:left;width:30%;line-height:2em;font-size:13px;padding-left:5%;text-align:left;font-weight:100;}
 .ws_alipay_table_form input{float:right;width:60%}
 .ws_alipay_table_form select{float:right;width:60%}
 .ws_alipay_table_form input[type=submit]{width:100px;display:block;float:right;margin-top:30px;margin-right:0}
