@@ -41,6 +41,7 @@ if(isset($_GET['tplid']))
         
         <div class="ws_alipay_toobar01">
              <a href="?page=ws_alipay&action=edit&tab=templates&tplid" class="button-secondary">添加模版</a>
+             <a href="http://www.waisir.com/archives/2939.htm" target="_blank" class="button-secondary">下载模版</a>
         </div>
         
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
