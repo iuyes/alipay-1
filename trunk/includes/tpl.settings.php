@@ -6,7 +6,7 @@
 
 <div id="ws_alipay_main_wrap" tabindex="999">
 
-	<?php include_once('tpl.settings_menu.php');?>
+	<?php include_once('tpl.tab.nav.php');?>
     <div id="ws_alipay_loading">Loading...</div>
 	<div id="ws_alipay_child_wrap" >
     	<?php 
