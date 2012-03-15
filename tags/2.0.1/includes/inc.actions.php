@@ -18,5 +18,6 @@ add_shortcode( 'zfb', 'ws_alipay_shortcode_parser' );
 //dos with first active my plugin
 register_activation_hook( __FILE__ , 'ws_alipay_activate');
 
+add_action('init','ws_alipay_request_handle');
 
 ?>

@@ -89,7 +89,8 @@ var $this = {
 }
 
 
-$(function(){//THE BEGINNING OF JQ
+var $ = jQuery.noConflict();
+jQuery(function(){//THE BEGINNING OF JQ
 
 	ws_alipay_page_init();
 
@@ -144,6 +145,7 @@ array('sendsrc','所发货源',
 $htmls = apply_filters( 'ws_alipay_orders_htmls', $htmls );
 echo ws_alipay_label_input_html( $htmls, 'ws_alipay_orders_' );
 
+wp_nonce_field('ws_alipay_edit');
 ?>
 
 

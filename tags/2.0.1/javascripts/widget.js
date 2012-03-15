@@ -1,7 +1,9 @@
-var $ = jQuery.noConflict();
+
 var $wsAliWidgetArr = [];
 
-$(function(){//BOJQ
+var $ = jQuery.noConflict();
+jQuery(function(){
+	$ = jQuery.noConflict();
 
 $('.ws_alipay_widget_wrap').mouseenter(function(){ 
 	$(this).children('.ws_alipay_widget_form').css('display','block');
