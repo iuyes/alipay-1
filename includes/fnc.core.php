@@ -19,13 +19,33 @@ endif;
 if(!function_exists('ws_alipay_menu_constructor')):
 function ws_alipay_menu_constructor(){
 	ws_alipay_db_create();
-	$page = add_options_page(
-			 ALIPAY_SETTINGS_TITLE,
-			 ALIPAY_NAME,
-			 ALIPAY_AUTH,
-			 ALIPAY_MENU_SLUG,
-			'ws_alipay_show_settings_page'
-	);	
+	
+	if(ws_alipay_is_admin())
+	{
+	
+		$page = add_options_page(
+				 ALIPAY_SETTINGS_TITLE,
+				 ALIPAY_NAME,
+				 'read',
+				 ALIPAY_MENU_SLUG,
+				'ws_alipay_show_settings_page'
+		);	
+		
+	}
+	else
+	{
+		$page = add_menu_page(
+				 '我的订单',
+				 '我的订单',
+				 'read',
+				 ALIPAY_MENU_SLUG,
+				'ws_alipay_show_settings_page'
+		);	
+	}
+		
+	
+	
+	
 	add_filter('plugin_action_links_' . ALIPAY_BASENAME, 'ws_alipay_settings_link');
 	add_action('admin_print_styles-' . $page, 'ws_alipay_admin_header');
 }
@@ -33,14 +53,18 @@ function ws_alipay_menu_constructor(){
 endif;
 if(!function_exists('ws_alipay_show_settings_page')):
 function ws_alipay_show_settings_page(){
-	include('tpl.settings.php');	
+
+		include('tpl.navHandler.php');
+	//include('tpl.settings.php');	
 }
 
 //admin init
 endif;
 if(!function_exists('ws_alipay_admin_init')):
 function ws_alipay_admin_init() {
-    wp_register_script('ws_alipay_settings_js', WS_ALIPAY_URL . '/javascripts/settings.js',array('jquery') );
+    //wp_register_script('ws_alipay_settings_js', WS_ALIPAY_URL . '/javascripts/settings.js',array('jquery') );
+	wp_register_script('ws_alipay_admin_js', WS_ALIPAY_URL . '/javascripts/admin.js',array('jquery') );
+		
 	wp_register_style ('ws_aplipay_settings_css', WS_ALIPAY_URL . '/styles/settings.css');
 }
 
@@ -62,6 +86,7 @@ function ws_alipay_init() {
 	WS_ALIPAY_URL . '/javascripts/widget.js',array('jquery') );
 	wp_enqueue_script('ws_alipay_widget_js');
 	
+	
 	wp_register_style('ws_alipay_front_css',
 	WS_ALIPAY_URL . '/styles/front.css');
 	wp_enqueue_style('ws_alipay_front_css');
@@ -70,8 +95,13 @@ function ws_alipay_init() {
 endif;
 if(!function_exists('ws_alipay_admin_header')):
 function ws_alipay_admin_header() {
-	wp_enqueue_script('ws_alipay_settings_js');
-	wp_enqueue_style ('ws_aplipay_settings_css');
+	
+	if(isset($_GET['page']) && $_GET['page']=='ws_alipay' )
+	{
+		wp_enqueue_script('ws_alipay_admin_js');
+		wp_enqueue_style ('ws_aplipay_settings_css');
+	}
+		
 }
 
 //add a settings link to the plugins list
@@ -93,6 +123,7 @@ function ws_alipay_languages(){
 endif;
 if(!function_exists('ws_alipay_register_taxonomy')):
 function ws_alipay_register_taxonomy(){
+
 	global $wp_rewrite;
 	$catname = '商品分类';
 	register_taxonomy( 'ws_alipay_product_cats', 'post', array(
@@ -605,6 +636,91 @@ function ws_alipay_label_input_html( $htmls, $filter_prefix = NULL ){
 //	
 //}
 endif;
+
+
+if(!function_exists('ws_alipay_label_input_html_with_data')):
+function ws_alipay_label_input_html_with_data( $htmls, $filter_prefix = NULL,$data ){
+	
+    $ret = '';
+	foreach( $htmls as $k=>$item ){
+		
+		if( $filter_prefix ){
+			$item = apply_filters( $filter_prefix.$item[0], $item);
+			$item = apply_filters( $filter_prefix.$k, $item);
+		}
+			
+		
+		if( isset($item['html']) ) {
+			$ret .= $item['html'];
+			continue;
+		}
+		
+		$attrstr = ' ';
+		if( isset( $item['attrs'] ) ){
+			foreach( $item['attrs'] as $ak=>$av ){
+				$attrstr .= $ak . '="'.$av.'" ';
+			}
+		}
+		
+		
+		$type = ( isset($item['type']) )?$item['type']:'text';
+		
+		
+		if( $type == 'hidden' ) 
+			$html = '<div style="display:none"><label for="'.$item[0].'">'.$item[1].'</label>';
+		else
+			$html = '<div><label for="'.$item[0].'">'.$item[1].'</label>';	
+		
+		isset($data[$item[0]])  || $data[$item[0]]='';
+			
+			
+		
+		switch( strtolower($type) ){
+			case 'text':
+				$html .= '<input name="'.$item[0].'" type="text" value="'.$data[$item[0]].'" '.$attrstr.'/>'; 
+				 break;
+			case 'hidden':
+				$html .= '<input name="'.$item[0].'" type="text" value="'.$data[$item[0]].'" '.$attrstr.'/>'; 
+				 break;	 
+			case 'select':
+				$html .= '<select name="'.$item[0].'" '.$attrstr.' >';
+				
+				foreach( $item['options'] as $ok=>$ov ){
+					if($ok == $data[$item[0]] ){
+						//echo "$ok====={$data[$item[0]]}";
+						$select = '  selected="selected"';
+					}
+					else
+						$select = '';	
+					//echo $ok.'<br />';	
+					//echo $data['protype'];
+		
+					$html .= '<option value="'.$ok.'"'.$select.'>'.$ov.'</option>';
+				}
+				
+				$html .= '</select>';	
+				break;
+			case 'textarea':
+				$html .= '<textarea name="'.$item[0].'" '.$attrstr.'>'.$data[$item[0]].'</textarea>';
+				break;	 
+		}
+		
+		
+		$html .= '</div>'; 
+		
+		if( $filter_prefix ){
+			$html = apply_filters( $filter_prefix.$k.'_f', $html);
+		}
+			
+			
+		$ret .= $html;
+	}
+	
+	return $ret;
+}
+
+
+endif;
 if(!function_exists('ws_alipay_sortByOneKey')):
 function ws_alipay_sortByOneKey(array $array, $key, $default = 0, $asc = true) {
 
@@ -662,4 +778,61 @@ function ws_alipay_num2time( $offset ){
 	return $fh. $offset. $fl;	
 }
 endif;
+
+function ws_alipay_request_handle()
+{
+	ws_alipay_isTodelete();
+}
+
+
+function ws_alipay_isTodelete()
+{
+
+	if(!ws_alipay_is_admin())
+		return;
+		
+	global $wpdb;
+	if(isset($_GET['action']) && $_GET['action']=='delete')
+	{
+		if( !empty($_GET['proid']) )
+		{	
+			$key = 'proid';
+			$ID = $_GET['proid'];
+		} 
+		elseif( !empty($_GET['ordid']) )
+		{	
+			$key = 'ordid';
+			$ID = $_GET['ordid'];
+		} 
+		elseif( !empty($_GET['tplid']) )
+		{	
+			$key = 'tplid';
+			$ID = $_GET['tplid'];
+		} 
+
+		//$_GET['proid'] = esc_sql($_GET['proid']);	
+		
+
+		$table = $_GET['tab'];
+		$wptable = 'wsali'.$table;
+		
+		if(isset($_GET['sure']))
+		{
+			$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->$wptable} WHERE `$key`=%d;",$ID));
+
+			//remove_query_tag(array('action','sure'));
+			//die(remove_query_arg(array('action','sure',$key)));
+			wp_redirect(remove_query_arg(array('action','sure',$key)));
+		}
+
+	}	
+}
+
+
+function ws_alipay_is_admin()
+{
+	$user = wp_get_current_user();
+	return $user->has_cap('activate_plugins');
+}
+
 ?>

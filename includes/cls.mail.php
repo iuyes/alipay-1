@@ -41,8 +41,8 @@ class WS_Alipay_Mail{
 		$this->tip['PROINFO'] = FALSE;
 		
 		//设置当前为HTML模式
-		add_filter('wp_mail_from_name', create_function('', 'return "支付交易提醒";'));
-		add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
+		add_filter('wp_mail_from_name', create_function('', 'return "支付交易提醒";'),9999);
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html";'),9999);
 
 	}
 	
@@ -249,7 +249,7 @@ $html .= <<<HTML
 		<p style="margin-bottom:15px;">{$this->tip['MSG_07']}<br>
 		{$this->tip['MSG_08']}</p>
 		<p>{$this->tip['MSG_09']}
-		<a target="_blank" style="color:#666;text-decoration:none;" href="http://help.alipay.com/lab/index.htm">
+		<a target="_blank" style="color:#666;text-decoration:none;" href="$siteUrl">
 		{$this->tip['MSG_10']}</a>&nbsp; {$this->tip['MSG_11']}
 		<a target="_blank" style="color:#666;text-decoration:none;" href="$siteUrl">
 		$siteUrl</a><br>

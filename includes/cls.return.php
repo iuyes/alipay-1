@@ -12,6 +12,7 @@ class wsAlipayReturn{
 	}
 	
 	function wsAlipayReturn( $para_ret ){
+		
 		global $wpdb;
 		//储存参数数组对象
 		$this->para		= $para_ret;
@@ -31,7 +32,7 @@ class wsAlipayReturn{
 	
 	
 	function returnProcess(){
-		
+					
 		//判断订单号是否存在(有可能被管理员删除了)
 		$verifyOrder = $this->verifyOrder();
 		
@@ -65,8 +66,8 @@ class wsAlipayReturn{
 		$status = $this->ordInfo['status'];
 		//如果订单状态为已付款,那么跳出该函数.
 		if( $status == 1 ) {
-			return 'PAY_SUCCESS';
-			
+			//return 'PAY_SUCCESS';
+			//die();
 		}
 			
 		
@@ -130,7 +131,9 @@ class wsAlipayReturn{
 		$bln_autoSend = $this->proInfo['autosend'];
 		$sended = true;
 		
-		if( $bln_autoSend ){
+		
+		if( $bln_autoSend )
+		{
 		
 			//获取自动发货源
 			$sendSrc = $this->getSendSrc();
@@ -148,7 +151,27 @@ class wsAlipayReturn{
 				$this->ordInfo['sendsrc'] = $sendSrc;
 				$this->mail->refresh($this->proInfo,$this->ordInfo);
 		
+				//更新数量
+				$snumpre = $this->proInfo['snum'];
+				$buynum = $this->ordInfo['buynum'];
+				$this->pro->set('num',(int)$snumpre+(int)$buynum);
+				$num = $this->proInfo['num'];
+				echo $num;
+				$this->pro->set('num',(int)$num-(int)$buynum);
+					
 			}	
+		}
+		else
+		{
+			
+			//更新数量
+			$snumpre = $this->proInfo['snum'];
+			$buynum = $this->ordInfo['buynum'];
+			$this->pro->set('num',(int)$snumpre+(int)$buynum);
+			$num = $this->proInfo['num'];
+			echo $num;
+			$this->pro->set('num',(int)$num-(int)$buynum);
+			
 		}	
 		
 		if( ws_alipay_get_setting( 'buyer_pay_notify' ) )

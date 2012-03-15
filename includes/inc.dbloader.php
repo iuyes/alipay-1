@@ -179,8 +179,10 @@ function ws_alipay_get_refer_data($table=1, $key=1){
 			IN (SELECT proid FROM $wpdb->wsaliorders)
 			;";
 	$wsali_dbLoader['mergeA'] = $wpdb->get_results($sql);
+	
 
 }
+
 
 function ws_alipay_get_data(){
 	global $wpdb, $wsali_dbLoader;
@@ -340,15 +342,29 @@ function ws_alipay_api_update(){
 	
 }
 
+//function ws_alipay_insert_data(){
+//	global $wpdb, $wsali_dbLoader;
+//	
+//	$in = array( $_REQUEST['where']=>'' );
+//
+//	
+//	$wt = array( '%d' );
+//	
+//	$wpdb->insert( $wsali_dbLoader['wptbl'], $in, $wt);
+//}
+
 function ws_alipay_insert_data(){
 	global $wpdb, $wsali_dbLoader;
 	
 	$in = array( $_REQUEST['where']=>'' );
-
+	
 	
 	$wt = array( '%d' );
 	
-	$wpdb->insert( $wsali_dbLoader['wptbl'], $in, $wt);
+	$sql = "INSERT INTO {name} ({$_REQUEST['where']}) VALUES('aaa');";
+	
+	$wpdb->query($sql);
+	//echo $wpdb->insert( $wsali_dbLoader['wptbl'], $in, $wt);
 }
 
 function ws_alipay_copy_data(){

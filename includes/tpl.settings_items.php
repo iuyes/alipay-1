@@ -79,9 +79,9 @@ var $this = {
 	
 }
 
-
-$(function(){//THE BEGINNING OF JQ
-
+var $ = jQuery.noConflict();
+jQuery(function(){//THE BEGINNING OF JQ
+	
 	ws_alipay_page_init();
 	
 	
@@ -112,6 +112,12 @@ $(function(){//THE BEGINNING OF JQ
 
 $htmls = array(
 array('name','商品名称'),
+array('protype','商品类型','type'=>'select',
+									  'options'=>array( 'CUSTOM'=>'普通实物', 
+									  'VIRTUAL'=>'普通虚拟',
+									  'ADP'=>'广告位',
+									  'LINK'=>'友情链接'),
+									  'attrs'=>array('class'=>'ws_alipay_select_protype')),
 array('price','商品价格'),
 array('pricePerDay','每日单价', 'type'=>'hidden','attrs'=>array('class'=>'ws_alipay_multiPrice')),
 array('pricePerWeek','每周单价', 'type'=>'hidden','attrs'=>array('class'=>'ws_alipay_multiPrice')),
@@ -179,17 +185,17 @@ array('','商品快捷链接', 'attrs'=>array('class'=>'ws_alipay_prolink','titl
 
 
 
-add_filter( 'ws_alipay_products_0', 'ws_alipay_products_0_fn',10,0);
+//add_filter( 'ws_alipay_products_0', 'ws_alipay_products_0_fn',10,1);
 
-function ws_alipay_products_0_fn(){
+function ws_alipay_products_0_fn($item){
 	
 	
-	return array('protype','商品类型','type'=>'select',
+	return array($item,array('protype','商品类型','type'=>'select',
 									  'options'=>array( 'CUSTOM'=>'普通实物', 
 									  'VIRTUAL'=>'普通虚拟',
 									  'ADP'=>'广告位',
 									  'LINK'=>'友情链接'),
-									  'attrs'=>array('class'=>'ws_alipay_select_protype'));
+									  'attrs'=>array('class'=>'ws_alipay_select_protype')));
 }
 
 
