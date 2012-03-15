@@ -1,11 +1,13 @@
-var $ = jQuery.noConflict();
+
 var $wsAliFrontArr = [];
 $wsAliFrontArr['payto_path'] = '/wp-content/plugins/alipay/includes/tpl.cart.php?';
 //$wsAliFrontArr['arr_query']  = ['proid','email','num','msg','extra','addr','tel','ordname','postcode','nonce'];
 //$wsAliFrontArr['arr_query'] = '';
 $wsAliFrontArr['prefix']	 = '.ws_alipay_buy_';
 //$wsAliFrontArr['p'] = '';
-$(function(){//BOJQ
+var $ = jQuery.noConflict();
+jQuery(function($){
+	$ = jQuery.noConflict();
 	$('.ws_alipay_buy_wrap .ws_alipay_buy_pay').click(function(){	
 		
 

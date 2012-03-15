@@ -162,13 +162,14 @@ $body	 = ws_alipay_esc_quotes($proInfo['description'])	;
 $proInfo['ordnum'] = 1;
 
 
+	
 //更新订单数据库
 $arr_insert = array(
 'proid'			=> $proid,
 'ordname'		=> $ordname,
 'emailsend'		=> '0',
 'postcode'		=> $postcode,
-'aliacc'		=> $aliacc,
+'aliacc'		=> trim((string)$aliacc),
 'otime'			=> $otime,
 'status'		=> '0',
 'series'		=> $out_trade_no,
@@ -194,6 +195,8 @@ $arr_insert = apply_filters('ws_alipay_insertorder',$arr_insert );
 $ord = new ws_alipay_order();
 $ordid = $ord->insert($arr_insert);
 
+//global $user_ID;
+$ord->sets('order_user_id',$user_ID);
 
 //特殊商品的额外处理
 if( $proInfo['protype'] == 'ADP' ){

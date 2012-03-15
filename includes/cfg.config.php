@@ -1,16 +1,20 @@
 <?php 
 
 
-
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/wp-load.php');
 		
 if(!defined('WP_ROOT')) 
-	define('WP_ROOT' , $_SERVER['DOCUMENT_ROOT']);
+{
+	//define('WP_ROOT' , $_SERVER['DOCUMENT_ROOT']);
+	define('WP_ROOT' , ABSPATH);
+}
+	
 if(!defined('DR')) 
 	define('DR', DIRECTORY_SEPARATOR);
 
 
 	
-include_once( WP_ROOT . DR . 'wp-load.php' );
+//include_once( WP_ROOT . DR . 'wp-load.php' );
 global $wpdb;
 
 

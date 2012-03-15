@@ -2,8 +2,8 @@
 /*
 Plugin Name:集成支付宝
 Plugin URI:http://www.waisir.com/wp-alipay
-Description:<strong>集成支付宝</strong>，可以在后台添加商品信息，并在相应页面输入短代码直接调用商品
-Version:1.3.6
+Description:<strong>集成支付宝</strong>, 集成支付宝,财付通,贝宝,网银,2.0不稳定版,欢迎反馈bug.
+Version:2.0.1
 Author:歪SIR
 Author URI:http://www.waisir.com
 License: GPLv2 or later

@@ -7,7 +7,8 @@ var $ = jQuery.noConflict();
 
 
 //+++++++++++++++++++++++++++++++++++++++++++
-$(function(){//THE BEGINNING OF JQ
+jQuery(function(){//THE BEGINNING OF JQ
+ 	$ = jQuery.noConflict();
 	ws_alipay_fn_register();//ENTRY
 });//END OF JQ
 

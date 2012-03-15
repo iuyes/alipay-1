@@ -75,7 +75,8 @@ var $this = {
 
 
 
-$(function(){//THE BEGINNING OF JQ
+var $ = jQuery.noConflict();
+jQuery(function(){//THE BEGINNING OF JQ
 
 	ws_alipay_page_init();
 
