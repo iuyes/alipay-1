@@ -44,7 +44,7 @@ $ws_alipay_api_fields = array(
 
 ?>
 <script type="text/javascript"> 
-$(function(){//BOJQ
+jQuery(function($){//BOJQ
 	
 $('#ws_alipay_api_form').submit(function(){
 	var $data = $('#ws_alipay_api_form').serialize();
