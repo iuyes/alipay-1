@@ -90,6 +90,9 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 
 == Changelog ==
 
+= Version 2.0.2 (2012-04-13) =
+* 修复了个别用户偶尔无法保存设置的BUG
+
 = Version 2.0.1 (2012-03-15) =
 * 改善了插件后台体验,修复了数据库的一些BUG,修复了JS不兼容
 
