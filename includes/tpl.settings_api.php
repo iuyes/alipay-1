@@ -58,10 +58,15 @@ $('#ws_alipay_api_form').submit(function(){
 			'&action=78013'
 			,
 		success:function(data){
+
 			if(data=='')
-			alert('保存成功');
-				
+				alert('保存成功');
+			else
+				alert("出现错误!");
 		},
+		error:function(err){
+			alert(1);
+		}
 		
 	});
 	return false;

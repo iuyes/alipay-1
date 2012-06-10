@@ -5,9 +5,9 @@ $wsAliFrontArr['payto_path'] = '/wp-content/plugins/alipay/includes/tpl.cart.php
 //$wsAliFrontArr['arr_query'] = '';
 $wsAliFrontArr['prefix']	 = '.ws_alipay_buy_';
 //$wsAliFrontArr['p'] = '';
-var $ = jQuery.noConflict();
+
 jQuery(function($){
-	$ = jQuery.noConflict();
+
 	$('.ws_alipay_buy_wrap .ws_alipay_buy_pay').click(function(){	
 		
 

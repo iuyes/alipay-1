@@ -59,8 +59,9 @@ $('#ws_alipay_api_form').submit(function(){
 			,
 		success:function(data){
 			if(data=='')
-			alert('保存成功');
-				
+				alert('保存成功');
+			else
+				alert("保存失败");
 		},
 		
 	});

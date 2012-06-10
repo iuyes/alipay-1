@@ -1,9 +1,11 @@
 <?php 
+
 ############################################################################
 define('SITE_ROOT',$_SERVER['DOCUMENT_ROOT']);
 define('DR',DIRECTORY_SEPARATOR);
 ############################################################################
 require_once( SITE_ROOT.DR.'wp-load.php');
+error_reporting(0);
 require_once('cfg.config.php');
 header("Content-Type: text/plain; charset=" . WS_ALIPAY_CHARSET);
 ############################################################################
@@ -340,6 +342,7 @@ function ws_alipay_api_update(){
 	$JSON = json_encode( $wsali_dbLoader['affdsA'] );
 	update_option( 'ws_alipay_settings_api', $JSON );	
 	
+
 }
 
 //function ws_alipay_insert_data(){

@@ -1,7 +1,6 @@
 
-var $ = jQuery.noConflict();
-jQuery(function(){
-$ = jQuery.noConflict();
+jQuery(function($){
+
 	
 var $arr_valiFields = ['tel','addr','postcode','ordname','email'];
 var $arr_valiTips = [];
