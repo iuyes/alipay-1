@@ -1,9 +1,9 @@
 <?php 
 /*
-Plugin Name:集成支付宝
+Plugin Name:WordPress支付宝Alipay|财付通Tenpay|贝宝PayPal集成插件
 Plugin URI:http://www.waisir.com/wp-alipay
-Description:<strong>集成支付宝</strong>, 集成支付宝,财付通,贝宝,网银,2.0不稳定版,欢迎反馈bug.
-Version:2.0.2
+Description:<strong>WordPress支付宝Alipay|财付通Tenpay|贝宝PayPal集成插件</strong>, 集成支付宝,财付通,贝宝,网银,2.0不稳定版,欢迎反馈bug.
+Version:2.1.4
 Author:歪SIR
 Author URI:http://www.waisir.com
 License: GPLv2 or later
@@ -28,11 +28,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
  
+define("WSALI_ROOT",dirname(__FILE__).'/'); 
 
-require_once('includes/cfg.config.php');
-require_once('includes/fnc.core.php');
-require_once('includes/inc.actions.php');
-require_once('includes/cls.widgets.php');
+require_once(WSALI_ROOT.'includes/cfg.config.php');
+require_once(WSALI_ROOT.'includes/fnc.core.php');
+require_once(WSALI_ROOT.'includes/inc.actions.php');
+require_once(WSALI_ROOT.'includes/cls.widgets.php');
 
 
 
