@@ -28,11 +28,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
  
+define("WSALI_ROOT",dirname(__FILE__).'/'); 
 
-require_once('includes/cfg.config.php');
-require_once('includes/fnc.core.php');
-require_once('includes/inc.actions.php');
-require_once('includes/cls.widgets.php');
+require_once(WSALI_ROOT.'includes/cfg.config.php');
+require_once(WSALI_ROOT.'includes/fnc.core.php');
+require_once(WSALI_ROOT.'includes/inc.actions.php');
+require_once(WSALI_ROOT.'includes/cls.widgets.php');
 
 
 
