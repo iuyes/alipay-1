@@ -88,7 +88,7 @@ class AlipaySubmit{
 			//DSA 签名方法待后续开发
 			die("DSA 签名方法待后续开发，请先使用MD5签名方式");
 		}else {
-			die("财付通暂不支持".$sign_type."类型的签名方式");
+			die("暂不支持".$sign_type."类型的签名方式");
 		}
 		return $sign;
 	}
@@ -106,6 +106,8 @@ class AlipaySubmit{
 		
 		//把参数组中所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
 		$request_data = ws_alipay_createLinkstring($para);
+		
+		//$request_data = createLinkstringUrlencode($para);
 		
 		return $request_data;
 	}
@@ -152,6 +154,8 @@ class AlipaySubmit{
 		
 		//请求的url完整链接
 		$url = $gateway . $request_data;
+		
+		
 		//远程获取数据
 		$xml_data = ws_alipay_getHttpResponse($url);
 	    //$xml_data = getHttpResponseCURL( $url );

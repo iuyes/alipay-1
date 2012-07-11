@@ -119,8 +119,9 @@ class WS_Alipay_Mail{
 				$this->arrProInfo[] = array('解压密码', $this->proInfo['zipcode']);
 			if( !empty($this->proInfo['emailtip']) )
 				$this->arrProInfo[] = array('其他说明', $this->proInfo['emailtip']);
-				$this->arrProInfo[] = array('生效时间', $this->ordInfo['stime']);
-				$this->arrProInfo[] = array('失效时间', $this->endTime());
+				
+				//$this->arrProInfo[] = array('生效时间', $this->ordInfo['stime']);
+				//$this->arrProInfo[] = array('失效时间', $this->endTime());
 				break;
 				
 			//FOR ADMINISTRATOR	
@@ -173,6 +174,9 @@ class WS_Alipay_Mail{
 		
 		$siteName = get_bloginfo('name');
 		$siteUrl = get_bloginfo('url');
+		
+		$supportUrl = ws_alipay_get_setting('link_support');
+		if(!filter_var($supportUrl,FILTER_VALIDATE_URL)) $supportUrl=$siteUrl; 
 		
 		$ordInfoHtml = ''; 
 		foreach( $this->arrOrdInfo as $li ){
@@ -249,7 +253,7 @@ $html .= <<<HTML
 		<p style="margin-bottom:15px;">{$this->tip['MSG_07']}<br>
 		{$this->tip['MSG_08']}</p>
 		<p>{$this->tip['MSG_09']}
-		<a target="_blank" style="color:#666;text-decoration:none;" href="$siteUrl">
+		<a target="_blank" style="color:#666;text-decoration:none;" href="$supportUrl">
 		{$this->tip['MSG_10']}</a>&nbsp; {$this->tip['MSG_11']}
 		<a target="_blank" style="color:#666;text-decoration:none;" href="$siteUrl">
 		$siteUrl</a><br>

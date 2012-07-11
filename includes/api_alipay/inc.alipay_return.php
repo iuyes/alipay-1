@@ -16,8 +16,20 @@ if( $verify_result ) {//验证成功
     $trade_no		= $_GET['trade_no'];		//获取支付宝交易号
     $total_fee		= $_GET['total_fee'];		//获取总价格
 
-    if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
+
+
+
+    if($_GET['trade_status'] == 'TRADE_FINISHED' || 
+			 $_GET['trade_status'] == 'TRADE_SUCCESS' || 
+			 $_GET['trade_status']=='WAIT_SELLER_SEND_GOODS') {
 		//支付成功
+		
+		if($_GET['trade_status']=='WAIT_SELLER_SEND_GOODS')
+		{
+				require_once( 'inc.apipay_send_confirm.php' );
+		}
+		
+		
 		
 		$arr_field = array( 'out_trade_no','trade_no','total_fee',
 							'buyer_email','buyer_id','notify_time');

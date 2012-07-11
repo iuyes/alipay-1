@@ -107,6 +107,7 @@ class ws_alipay_info{
 		
 		if( !empty($kvp) ){
 			$fields = $this->splitFields( $kvp );
+			
 			$dbs = $fields['dbs'];
 			$metas = $fields['metas'];	
 			//print_r($metas);
@@ -115,9 +116,14 @@ class ws_alipay_info{
 			$wpdb->update($wpdb->{'wsali'.$this->tbl}, $dbs, array($this->priid=>$this->curid),array(),array('%d'));
 			
 			if( !empty($metas) )
-			foreach( $metas as $k=>$v ){
-				$this->sets($k,$v);
+			{
+				
+				foreach( $metas as $k=>$v ){
+					$this->sets($k,$v);
+				}
+				
 			}
+			
 			//$wpdb->update($wpdb->{'wsali'.$this->tbl.'meta'}, $metas, array('wsali'.$this->tbl.'_id'=>$this->curid),array(),array('%d'));
 			return;///////////////////////////////////////////////////////
 		}
@@ -210,6 +216,11 @@ class ws_alipay_info{
 	//Add or update a meta
 	function sets( $field, $default= NULL ){
 		global $wpdb;
+		
+
+		add_metadata($wpdb->{'wsali'.$this->tbl.'metatype'}, $this->curid, $field, $default,true);
+		
+		
 		return update_metadata( 
 				$wpdb->{'wsali'.$this->tbl.'metatype'}, $this->curid, $field, $default );
 		

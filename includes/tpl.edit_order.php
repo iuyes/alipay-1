@@ -59,8 +59,17 @@ $_GET['ordid'] = esc_sql($_GET['ordid']);
 $data = $wpdb->get_results("SELECT * FROM {$wpdb->wsaliorders} WHERE `ordid`={$_GET['ordid']} LIMIT 1;",ARRAY_A);
 //print_r($data);
 
+
+
 if(isset($data[0]))
 	$data = $data[0];
+	
+$ordermeta = $wpdb->get_results("SELECT * FROM {$wpdb->wsaliordersmeta} WHERE `wsaliorders_id`={$_GET['ordid']};",ARRAY_A);
+
+foreach($ordermeta as $meta)
+{
+	$data[$meta['meta_key']] = 	$meta['meta_value'];
+}
 	
 $htmls = array(
 
@@ -103,6 +112,7 @@ foreach($htmls as $item)
 }
 
 $translate['proid'] = '商品编号';
+
 
 foreach($data as $k=>$item)
 {

@@ -322,15 +322,25 @@ function ws_alipay_no_empty( $arr_field, $arr_src ){
  */
  endif;
 if(!function_exists('ws_alipay_select_yes_no_html')):
-function ws_alipay_select_yes_no_html( $val, $name ){
+function ws_alipay_select_yes_no_html( $val, $name,$option=NULL ){
 	$html = '<select name="'.$name.'">';
 	
-	if( $val == 0 ){
-		$html .= '<option value="0" selected="selected">否&nbsp;&nbsp;&nbsp;&nbsp;╳</option>';
-		$html .= '<option value="1">是&nbsp;&nbsp;&nbsp;&nbsp;√</option>';
-	}else{
-		$html .= '<option value="0">否&nbsp;&nbsp;&nbsp;&nbsp;╳</option>';
-		$html .= '<option value="1" selected="selected">是&nbsp;&nbsp;&nbsp;&nbsp;√</option>';
+	if(!empty($option))
+	{
+		foreach($option as $opt)
+		{
+			$html .= '<option value="'.$opt['value'].'">'.$opt['label'].'</option>';
+		}
+	}
+	else
+	{
+		if( $val == 0 ){
+			$html .= '<option value="0" selected="selected">否&nbsp;&nbsp;&nbsp;&nbsp;╳</option>';
+			$html .= '<option value="1">是&nbsp;&nbsp;&nbsp;&nbsp;√</option>';
+		}else{
+			$html .= '<option value="0">否&nbsp;&nbsp;&nbsp;&nbsp;╳</option>';
+			$html .= '<option value="1" selected="selected">是&nbsp;&nbsp;&nbsp;&nbsp;√</option>';
+		}
 	}
 	$html .= '</select>';
 	return $html;
@@ -350,6 +360,8 @@ function ws_alipay_input_html( $show, $src ){
 		isset( $arr_v['default'] ) || $arr_v['default'] = '';
 		isset( $src[$k] ) || $src[$k] = $arr_v['default'];
 		
+		
+		
 		switch( $arr_v['type'] ){	
 			case 'text':
 				$html .= '<div>';
@@ -358,9 +370,10 @@ function ws_alipay_input_html( $show, $src ){
 				$html .= '</div>';
 				break;
 			case 'select':	
+				if(!isset($arr_v['option'])) $arr_v['option'] = array();
 				$html .= '<div>';
 				$html .= "<label for='$k'>{$arr_v['label']}:</label>";
-				$html .=  ws_alipay_select_yes_no_html( $src[$k], $k );
+				$html .=  ws_alipay_select_yes_no_html( $src[$k], $k, $arr_v['option'] );
 				$html .= '</div>';
 				break;	
 			case 'html':	

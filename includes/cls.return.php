@@ -115,6 +115,8 @@ class wsAlipayReturn{
 
 		}
 		
+	
+		
 		$toUpdateOrdInfo = array(
 		'aliacc' 		=> $this->para['buyer_id'],	
 		'stime'			=> date('Y-m-d H:i:s', $stime),
@@ -156,7 +158,7 @@ class wsAlipayReturn{
 				$buynum = $this->ordInfo['buynum'];
 				$this->pro->set('num',(int)$snumpre+(int)$buynum);
 				$num = $this->proInfo['num'];
-				echo $num;
+				//echo $num;
 				$this->pro->set('num',(int)$num-(int)$buynum);
 					
 			}	
@@ -169,7 +171,7 @@ class wsAlipayReturn{
 			$buynum = $this->ordInfo['buynum'];
 			$this->pro->set('num',(int)$snumpre+(int)$buynum);
 			$num = $this->proInfo['num'];
-			echo $num;
+			//echo $num;
 			$this->pro->set('num',(int)$num-(int)$buynum);
 			
 		}	

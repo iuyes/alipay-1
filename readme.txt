@@ -4,13 +4,18 @@ Donate link: http://www.waisir.com/donate
 Tags: alipay,tenpay,paypal,e-commerce,cart,shop,支付宝,财付通
 Requires at least: 2.7.0
 Tested up to: 3.3.1
-Stable tag: 2.1.4
+Stable tag: 3.1.2
 
 A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with advertisement,links and some else with blog features automaticly.
 
 == Description ==
 = 写在前面 =
-* 2.0版本尚未添加新特性, 如使能正常使用以前版本, 不建议升级! 改善了插件后台体验,修复了数据库的一些BUG,修复了JS不兼容
+* 3.0版本主要添加了'支付宝担保交易收款接口'和'支付宝双功能收款接口'.
+* 3.0版本在担保交易中采取了'自动确认发货'机制,减少操作环节.
+* 3.0版本增加了邮件客服超链接设置.
+* 3.0版本增加了支付宝多接口一键切换.
+* 3.0版本修复了自动发货相关BUG.
+* 3.0版本修复了平台订单号相关BUG.
 
 = 链接表 = 
 * [歪世界-Home page of the Author](http://www.waisir.com/ "作者主页")
@@ -19,8 +24,6 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 * [反馈-Feed back](http://wordpress.org/tags/alipay "Feed Back") 
 * [相关插件-WP-Pay](http://wordpress.org/extend/plugins/wp-pay/ "富商城支持")
 * [相关插件-WP-Alipay](http://wordpress.org/extend/plugins/wp-alipay/ "")
-
-
 
 = For Non Chinese Users = 
 * Most of you take a good use of Paypal, I don't think this plugin is suitable for you though this version of the plugin support Paypal well, for your nation's culture and your style. But welcome to use it if you think it is perfect for you or there if an ability for you to change it into your style!
@@ -89,6 +92,10 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 
 
 == Changelog ==
+
+= Version 3.1.2 (2012-07-12) =
+* 增加了'支付宝担保交易收款接口'和'支付宝双功能收款接口'
+* 修复了若干BUG.
 
 = Version 2.1.4 (2012-04-13) =
 * 修复了个别JS'bug

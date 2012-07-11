@@ -15,6 +15,7 @@ $ws_alipay_api_fields = array(
 	'alipay_partnerid'			=> array('label'=>'支付宝接口账号'),
 	'alipay_key'				=> array('label'=>'支付宝接口密钥'),
 	'alipay_account'			=> array('label'=>'支付宝收款账号'),
+	'alipay_service'			=> array('type'=>'select','label'=>'支付宝接口类型','default'=>'1','option'=>array(array('value'=>'create_direct_pay_by_user','label'=>'支付宝即时到账收款接口'),array('value'=>'create_partner_trade_by_buyer','label'=>'支付宝担保交易收款接口'),array('value'=>'trade_create_by_buyer','label'=>'支付宝双功能收款接口'))),
 	////财付通
 	array('type'=>'html','html'=>'<p class="clear_5"></p>'),
 	'tenpay_partnerid'			=> array('label'=>'财付通接口账号'),
@@ -35,6 +36,12 @@ $ws_alipay_api_fields = array(
 	'seller_pay_notify'			=> array('type'=>'select','label'=>'卖家付款通知(建议开启)','default'=>'1'),
 	//缺货提醒
 	'pro_lack_notify'			=> array('type'=>'select','label'=>'管理员缺货通知(建议开启)','default'=>'1'),
+	
+	array('type'=>'html','html'=>'<h2>其他设置</h2>'),
+	'link_support'			=> array('type'=>'text','label'=>'客服超链接(显示在邮件中)','default'=>''),
+	array('type'=>'html','html'=>'<br/>'),
+	array('type'=>'html','html'=>'<br/>'),
+	array('type'=>'html','html'=>'<p>【注】尊重开源, 请保留支付页面页脚的版权信息!</p>'),
 	
 );
 

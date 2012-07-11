@@ -71,10 +71,28 @@ class AlipayService {
 		
 		//2.构造模拟远程HTTP的POST请求，获取支付宝的返回XML处理结果:
 		//注意：若要使用远程HTTP获取数据，必须开通SSL服务，该服务请找到php.ini配置文件设置开启，建议与您的网络管理员联系解决。
+		
 		$html_text = $alipaySubmit->sendPostInfo($para_temp, $this->alipay_gateway, $this->aliapy_config);
+		
 		return $html_text;
 	}
 	
+	
+	function send_goods_confirm_by_platform($para_temp) {
+
+		//获取支付宝的返回XML处理结果
+		$alipaySubmit = new AlipaySubmit();
+		
+		$myconfig = $this->aliapy_config;
+		unset($myconfig['seller_email']);
+		unset($myconfig['return_url']);
+		unset($myconfig['notify_url']);
+		
+		
+		$html_text = $alipaySubmit->sendPostInfo($para_temp, $this->alipay_gateway, $myconfig);
+	
+		return $html_text;
+	}
 	
 }
 ?>

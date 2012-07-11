@@ -24,6 +24,8 @@ if(isset($_POST['submit']))
 				update_metadata($wpdb->wsaliproductsmetatype,$_REQUEST['proid'],$k,$v);
 			}
 	}
+	
+
 	$wpdb->update($wpdb->wsaliproducts,$_POST,array('proid'=>$_REQUEST['proid']));
 	
 }
@@ -86,6 +88,8 @@ foreach($meta as $k=>$item)
 if(isset($data[0]))
 	$data = $data[0];
 $data['buylink']=get_bloginfo('url').'/wp-content/plugins/alipay/includes/tpl.cart.php?proid='.$data['proid']; 
+
+if(!isset($data['autosrc'])) $data['autosrc']='';
 
 $htmls = array(
 array('proid','商品编号','type'=>'hidden'),
@@ -155,7 +159,7 @@ array('autosep','货源分隔符', 'attrs'=>array('class'=>'ws_alipay_select_aut
 
 array('autosrc','html'=>'<div style="float:none;clear:both;width:100%;">
 <label for="autosrc" style="float:left;padding-left:2.5%;width:100%">虚拟物品货源&nbsp;&nbsp;&nbsp;&nbsp;(如果货源文本是每行一个条目,请将\'货源分隔符\'留空。一旦设置了分隔符，下面的货源文件就应该用该分隔符分隔)</label>
-<textarea name="autosrc" style="float:right;display:block;width:97.5%;min-width:97.5%;max-width:97.5%;min-height:70px;margin-left:2.5%" class="ws_alipay_select_autosend_rel"></textarea>
+<textarea name="autosrc" style="float:right;display:block;width:97.5%;min-width:97.5%;max-width:97.5%;min-height:70px;margin-left:2.5%" class="ws_alipay_select_autosend_rel">'.$data['autosrc'].'</textarea>
 </div>'),
 
 array('buylink','商品快捷链接', 'attrs'=>array('class'=>'ws_alipay_prolink','title'=>'双击打开')),
