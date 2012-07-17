@@ -3,7 +3,7 @@
 Plugin Name:WordPress支付宝Alipay|财付通Tenpay|贝宝PayPal集成插件
 Plugin URI:http://www.waisir.com/wp-alipay
 Description:<strong>WordPress支付宝Alipay|财付通Tenpay|贝宝PayPal集成插件</strong>, 集成支付宝,财付通,贝宝,网银,V3:支持支付宝多接口!
-Version:3.1.2
+Version:3.5.2
 Author:歪SIR
 Author URI:http://www.waisir.com
 License: GPLv2 or later

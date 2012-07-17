@@ -171,7 +171,11 @@ class WSAlipay_Orders_List_Table extends WP_List_Table {
             'edit'      => '<a href="'.add_query_arg(array('tab'=>$this->mname,'action'=>'edit',$this->mkey=>$item['ID'])).'">查看详情</a>',
             'delete'    => '<a href="'.add_query_arg(array('tab'=>$this->mname,'action'=>'delete',$this->mkey=>$item['ID'])).'">删除</a>',
         );
-        
+				
+				
+				if(!current_user_can('level_10'))
+					unset($actions['delete']);
+        	
         //Return the title contents
         return sprintf('%1$s <span style="color:silver">(ID:%2$s,NO:%3$s)</span>%4$s',
             /*$1%s*/ $item['name'],
@@ -440,6 +444,7 @@ $data = $wpdb->get_results("SELECT o.*,p.*,o.`ordid`as`ID` FROM `{$wpdb->wsalior
 
 
 if(!ws_alipay_is_admin()){
+	
 	global $user_ID;
 	$meta = $wpdb->get_results("SELECT `wsaliorders_id` FROM `{$wpdb->wsaliordersmeta}` WHERE `meta_key`='order_user_id' AND `meta_value`=$user_ID;",ARRAY_A);
 	
@@ -452,6 +457,10 @@ if(!ws_alipay_is_admin()){
 		}
 		$ids = implode(',',$ids);
 		$data = $wpdb->get_results("SELECT o.*,p.*,o.`ordid`as`ID` FROM `{$wpdb->wsaliorders}` as o INNER JOIN `{$wpdb->wsaliproducts}` as p ON o.`proid`=p.`proid` WHERE o.`ordid` IN ($ids);", ARRAY_A);
+	}
+	else
+	{
+		$data = array();	
 	}
 	
 	foreach($data as $k=>$item)

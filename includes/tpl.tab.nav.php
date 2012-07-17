@@ -27,9 +27,14 @@ if($user->has_cap('activate_plugins'))
 {
 	$items = $menu_item;
 }
-else
+elseif( ws_alipay_get_setting('allow_user_see_order') )
 {
 	$items = $user_item;
+}
+
+if(!$user->has_cap('activate_plugins') && !ws_alipay_get_setting('allow_user_see_order') )
+{
+	wp_die('Permission Deny!');
 }
 
 ?>

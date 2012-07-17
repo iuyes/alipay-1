@@ -4,12 +4,14 @@ Donate link: http://www.waisir.com/donate
 Tags: alipay,tenpay,paypal,e-commerce,cart,shop,支付宝,财付通
 Requires at least: 2.7.0
 Tested up to: 3.3.1
-Stable tag: 3.1.2
+Stable tag: 3.5.2
 
 A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with advertisement,links and some else with blog features automaticly.
 
 == Description ==
 = 写在前面 =
+* 3.5版本增加了会员机制.
+* 3.5版本修复了接口切换的BUG.
 * 3.0版本主要添加了'支付宝担保交易收款接口'和'支付宝双功能收款接口'.
 * 3.0版本在担保交易中采取了'自动确认发货'机制,减少操作环节.
 * 3.0版本增加了邮件客服超链接设置.
@@ -92,6 +94,10 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 
 
 == Changelog ==
+
+= Version 3.2.2 (2012-07-18) =
+* 增加了会员机制
+* 修复了接口切换的BUG.
 
 = Version 3.1.2 (2012-07-12) =
 * 增加了'支付宝担保交易收款接口'和'支付宝双功能收款接口'

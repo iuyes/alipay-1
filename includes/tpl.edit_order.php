@@ -71,6 +71,9 @@ foreach($ordermeta as $meta)
 	$data[$meta['meta_key']] = 	$meta['meta_value'];
 }
 	
+	
+
+	
 $htmls = array(
 
 array('proid','商品编号','attrs'=>array('readonly'=>'readonly')),
@@ -79,6 +82,7 @@ array('series','商户订单号','attrs'=>array('readonly'=>'readonly')),
 array('platTradeNo','平台订单号','attrs'=>array('readonly'=>'readonly')),
 array('paygate','支付网关','attrs'=>array('readonly'=>'readonly')),
 array('aliacc','支付账号','attrs'=>array('readonly'=>'readonly')),
+array('username','用户名','attrs'=>array('readonly'=>'readonly')),
 array('ordname','收件人姓名','attrs'=>array('readonly'=>'readonly')),
 array('email','收件人邮箱','attrs'=>array('readonly'=>'readonly')),
 array('phone','收件人电话','attrs'=>array('readonly'=>'readonly')),

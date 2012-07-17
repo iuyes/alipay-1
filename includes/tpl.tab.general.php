@@ -39,13 +39,19 @@ $ws_alipay_api_fields = array(
 	
 	array('type'=>'html','html'=>'<h2>其他设置</h2>'),
 	'link_support'			=> array('type'=>'text','label'=>'客服超链接(显示在邮件中)','default'=>''),
+	'user_must_login'			=> array('type'=>'select','label'=>'购买商品必须登录','default'=>'0'),
+	'allow_user_see_order'			=> array('type'=>'select','label'=>'允许登录用户看见自己的订单','default'=>'0'),
+	
+	
 	array('type'=>'html','html'=>'<br/>'),
 	array('type'=>'html','html'=>'<br/>'),
-	array('type'=>'html','html'=>'<p>【注】尊重开源, 请保留支付页面页脚的版权信息!</p>'),
+	array('type'=>'html','html'=>'<p style="line-height:2em;padding:10px;padding-bottom:0">【注1】尊重开源, 请保留支付页面页脚的版权信息! 插件使用过程的问题以及建议请在<a href="http://www.waisir.com/wp-alipay/" target="_blank">插件主页</a>留言或通过<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PEtdVU9VTnxNTRJfU1E" target="_blank">邮件</a>反馈给我!当然,当插件给你带来了便利的同时别忘记了<a href="http://wordpress.org/support/register.php" target="_blank">登录WP</a>给它一个<a href="http://wordpress.org/extend/plugins/alipay/" target="_blank">评分</a>!感谢您的支持!</p>'),
+	array('type'=>'html','html'=>'<p style="line-height:2em;padding:10px;padding-bottom:0">【注2】有朋友反映模版太少,模版DIY有困难的朋友,你可以将你想要的模版的样式截图并发送至我的邮箱中,我将其写成代码放到模版页面中供大家下载!</p>'),
+	array('type'=>'html','html'=>'<p style="line-height:2em;padding:10px;padding-bottom:0">Copyright &copy; 2012-2013 <a href="http://www.waisir.com" target="_blank">歪世界</a> 保留所有权</p>'),
 	
 );
 
-
+///ws_alipay_get_setting('')
 
 
 

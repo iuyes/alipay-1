@@ -66,6 +66,7 @@ body{background:#F5F5F5;}
 #bankList ul li{display:block;float:left;margin:15px 0px 0 13px;width:150px;height:25px;background-image:url(../styles/images/banks.gif);background-repeat:no-repeat;}
 #bankList ul li input{display:block;margin-top:5px;}
 
+.bankpreload{width:0;height:0;background-image:url(../styles/images/banks.gif)}
 
 #paySubmit input{border:outset 2px #999;margin:20px;height:3em;line-height:2em;padding:0.5em}
 #paySubmit input:hover{border:outset 2px #555;}

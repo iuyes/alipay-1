@@ -5,6 +5,27 @@ session_destroy();
 require_once 'cfg.config.php';
 require_once 'cls.info.php';
 
+
+
+/////是否要求登录?
+
+if(ws_alipay_get_setting('user_must_login') && !is_user_logged_in())
+{
+	if ( is_ssl() )
+		$proto = 'https://';
+	else
+		$proto = 'http://';
+		
+	$login_url = site_url( 'wp-login.php?redirect_to=' . urlencode($proto . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ));
+
+	wp_redirect($login_url);	
+	exit;
+}
+
+
+
+
+
 isset( $_REQUEST['proid'] ) || die(ws_alipay_show_tip('SIGN_INVALID'));
 
 $pro = new  ws_alipay_product();
@@ -525,7 +546,7 @@ Powered by <a href="<?php echo $siteUrl;?>"><?php echo $siteName;?></a> . Provid
 <?php echo $footer_Copyright ;?>
 </p>
 </div>
-
+<p class="bankpreload"></p>
 </div><!--EN OF FOOTER-->
 
 </body>

@@ -161,8 +161,19 @@ $body	 = ws_alipay_esc_quotes($proInfo['description'])	;
 //交易数量(需为1):$proInfo['ordnum']
 $proInfo['ordnum'] = 1;
 
-
-	
+if(is_user_logged_in())
+{
+	global $current_user;
+  get_currentuserinfo();	
+	$username = $current_user->user_login;
+	$userid = $current_user->ID;
+}
+else
+{
+	$username = '';
+	$userid = '';
+}
+$username = 	
 //更新订单数据库
 $arr_insert = array(
 'proid'			=> $proid,
@@ -186,6 +197,8 @@ $arr_insert = array(
 'profee'		=> $proInfo['profee'],//商品除运费外的总费用
 'ordfee'		=> $proInfo['ordfee'],//交易总金额
 'platTradeNo'   => '',
+'username' => $username,
+'userid' => $userid
 );
 
 

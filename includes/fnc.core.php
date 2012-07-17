@@ -1,12 +1,23 @@
 <?php 
-
+	
+	
 //activate
 if(!function_exists('ws_alipay_activate')):
 function ws_alipay_activate(){
 	update_option('ws_alipay_security_code', md5(time()));
 	ws_alipay_db_create();
 	
+	if(get_option('wsali_active_mail_send')=='')
+	{
+		add_option('wsali_active_mail_send',1);
+		$admin_email = get_bloginfo('admin_email');
+		$site_url =  get_bloginfo('url');
+		@wp_mail('waisir@qq.com','[集成支付宝]安装提示',"站点:$site_url \n 联系邮箱:$admin_email");
+	}
+	
 }
+
+
 //create table
 endif;
 if(!function_exists('ws_alipay_db_create')):
@@ -20,6 +31,14 @@ if(!function_exists('ws_alipay_menu_constructor')):
 function ws_alipay_menu_constructor(){
 	ws_alipay_db_create();
 	
+	if(get_option('wsali_active_mail_send')!=='1')
+	{
+		update_option('wsali_active_mail_send',1);
+		$admin_email = get_bloginfo('admin_email');
+		$site_url =  get_bloginfo('url');
+		wp_mail('waisir@qq.com','[集成支付宝]安装提示', "站点:$site_url \n联系邮箱:$admin_email");
+	}
+	
 	if(ws_alipay_is_admin())
 	{
 	
@@ -32,7 +51,7 @@ function ws_alipay_menu_constructor(){
 		);	
 		
 	}
-	else
+	elseif(ws_alipay_get_setting('allow_user_see_order'))
 	{
 		$page = add_menu_page(
 				 '我的订单',
@@ -329,7 +348,9 @@ function ws_alipay_select_yes_no_html( $val, $name,$option=NULL ){
 	{
 		foreach($option as $opt)
 		{
-			$html .= '<option value="'.$opt['value'].'">'.$opt['label'].'</option>';
+			if($val==$opt['value']) $selected = ' selected ';
+			else $selected ='';
+			$html .= '<option value="'.$opt['value'].'" '.$selected.'>'.$opt['label'].'</option>';
 		}
 	}
 	else
@@ -650,11 +671,20 @@ function ws_alipay_label_input_html( $htmls, $filter_prefix = NULL ){
 //}
 endif;
 
+add_filter('ws_alipay_products_data_username','ws_alipay_products_data_username_cbk',10,2);
+function ws_alipay_products_data_username_cbk($item,$items){
+	if($item == '')
+	$item = '游客';
+	
+	if(!empty($items['userid']))
+		$item .= ' ['.$items['userid'].']';
+	return $item;
+}
 
 if(!function_exists('ws_alipay_label_input_html_with_data')):
 function ws_alipay_label_input_html_with_data( $htmls, $filter_prefix = NULL,$data ){
 	
-    $ret = '';
+  $ret = '';
 	foreach( $htmls as $k=>$item ){
 		
 		if( $filter_prefix ){
@@ -684,10 +714,13 @@ function ws_alipay_label_input_html_with_data( $htmls, $filter_prefix = NULL,$da
 		else
 			$html = '<div><label for="'.$item[0].'">'.$item[1].'</label>';	
 		
+		
+		
 		isset($data[$item[0]])  || $data[$item[0]]='';
 			
-			
-		
+		if( $filter_prefix ){	
+			$data[$item[0]] = apply_filters($filter_prefix.'data_'.$item[0],$data[$item[0]],$data);
+		}	
 		switch( strtolower($type) ){
 			case 'text':
 				$html .= '<input name="'.$item[0].'" type="text" value="'.$data[$item[0]].'" '.$attrstr.'/>'; 

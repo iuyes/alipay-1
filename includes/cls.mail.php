@@ -41,8 +41,8 @@ class WS_Alipay_Mail{
 		$this->tip['PROINFO'] = FALSE;
 		
 		//设置当前为HTML模式
-		add_filter('wp_mail_from_name', create_function('', 'return "支付交易提醒";'),9999);
-		add_filter('wp_mail_content_type',create_function('', 'return "text/html";'),9999);
+		add_filter('wp_mail_from_name', create_function('', 'return "支付交易提醒";'),999999);
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html";'),999999);
 
 	}
 	
