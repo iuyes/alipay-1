@@ -126,6 +126,7 @@ class wsAlipayReturn{
 		
 		//更新状态
 		$this->order->set('','',$toUpdateOrdInfo);
+		$this->ordInfo = $this->order->get_info( $this->ordid );
 		
 		//更新邮件参数
 		$this->mail->refresh($this->proInfo,$this->ordInfo);	

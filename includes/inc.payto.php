@@ -93,7 +93,7 @@ $admin_url = get_option('siteurl') . '/wp-admin/options-general.php?page=ws_alip
 if( (int)$proInfo['num'] < 2){
 	if( ws_alipay_get_setting( 'pro_lack_notify' ) ){
 		wp_mail( $notify_email , '商品余量不足,请及时补充', 
-		"商品ID:$proid<br />商品名:$proInfo[name]<br />管理地址:$admin_url");	
+		"商品ID:$proid \n商品名:$proInfo[name] \n管理地址:$admin_url");	
 	}
 }
 

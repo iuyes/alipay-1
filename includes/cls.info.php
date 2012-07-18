@@ -1,4 +1,6 @@
 <?php 
+
+
 /**
  USAGE:
  
@@ -69,6 +71,10 @@ class ws_alipay_info{
 		
 		/////////////////////////////////////////////////////////////////////////////////////
 		$metas = get_metadata( $wpdb->{'wsali'.$this->tbl.'metatype'}, $id, '', true);
+	
+		//foreach($metas as &$meta)
+		//$meta = $meta[0];
+		
 
 		//Filter the JSON fields which is for ajax add-on
 		
@@ -77,6 +83,8 @@ class ws_alipay_info{
 			foreach( $metas as $k=>$v ){
 				if( !preg_match( '@^\S+JSON$@', $k ) ){
 					$metaCOMN[$k] = $v[0];
+					//echo $metaCOMN[$k].'</br>';
+					//$ret[0][$k] = $v[0];
 				}
 			}				
 													
@@ -84,6 +92,10 @@ class ws_alipay_info{
 		
 		}
 		/////////////////////////////////////////////////////////////////////////////////////
+		if($this->tbl=='orders'){
+			//print_r($ret[0] );
+			//die();
+		}
 		
 		$ret[0] = array_map('maybe_unserialize', $ret[0]);
 
