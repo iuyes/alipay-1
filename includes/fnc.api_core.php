@@ -79,6 +79,13 @@ function ws_alipay_getHttpResponse($url, $input_charset = '', $time_out = "60") 
 		$transports = "tcp://";
 		$urlarr["port"] = "80";
 	}
+if (trim($input_charset) !== '') 
+	$url .= '&_input_charset='.$input_charset;
+	
+$res = wp_remote_post($url);
+$responseText = wp_remote_retrieve_body($res);
+return $responseText;	
+	/*
 	$fp=@fsockopen($transports . $urlarr['host'],$urlarr['port'],$errno,$errstr,$time_out);
 	if(!$fp) {
 		die("ERROR: $errno - $errstr<br />\n");
@@ -102,6 +109,7 @@ function ws_alipay_getHttpResponse($url, $input_charset = '', $time_out = "60") 
 		
 		return $responseText;
 	}
+	*/
 }
 
 function ws_alipay_getHttpResponseCURL( $url ){

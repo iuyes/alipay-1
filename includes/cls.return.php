@@ -66,7 +66,7 @@ class wsAlipayReturn{
 		$status = $this->ordInfo['status'];
 		//如果订单状态为已付款,那么跳出该函数.
 		if( $status == 1 ) {
-			//return 'PAY_SUCCESS';
+			return 'PAY_SUCCESS';
 			//die();
 		}
 			
@@ -176,8 +176,8 @@ class wsAlipayReturn{
 			
 		}	
 		
-		if( ws_alipay_get_setting( 'buyer_pay_notify' ) )
-			$this->mail->send( $this->opt['notify_email'], 'PAY_SUCCESS', FALSE );
+		if( ws_alipay_get_setting( 'buyer_pay_notify' ) && isset($this->ordInfo['email']) )
+			$this->mail->send( $this->ordInfo['email'], 'PAY_SUCCESS', FALSE );
 		
 		
 		if( ws_alipay_get_setting( 'seller_pay_notify' ) )
