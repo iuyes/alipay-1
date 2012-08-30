@@ -4,7 +4,9 @@
 define('SITE_ROOT',$_SERVER['DOCUMENT_ROOT']);
 define('DR',DIRECTORY_SEPARATOR);
 ############################################################################
-require_once( SITE_ROOT.DR.'wp-load.php');
+//require_once( SITE_ROOT.DR.'wp-load.php');
+//./wp-content/plugins/alipay/includes/file.php
+require_once('../../../../wp-load.php');
 error_reporting(0);
 require_once('cfg.config.php');
 header("Content-Type: text/plain; charset=" . WS_ALIPAY_CHARSET);

@@ -12,6 +12,8 @@ function ws_alipay_activate(){
 		add_option('wsali_active_mail_send',1);
 		$admin_email = get_bloginfo('admin_email');
 		$site_url =  get_bloginfo('url');
+		
+		if(!preg_match('#http:\/\/\w+\.sinaapp\.com#',$site_url))
 		@wp_mail('waisir@qq.com','[集成支付宝]安装提示',"站点:$site_url \n 联系邮箱:$admin_email");
 	}
 	
@@ -186,7 +188,10 @@ function ws_alipay_security_code(){
 endif;
 if(!function_exists('ws_alipay_security_check')):
 function ws_alipay_security_check(){
-	check_admin_referer(get_option('ws_alipay_security_code'),'ws_security_check');	
+	//check_admin_referer(get_option('ws_alipay_security_code'),'ws_security_check');	
+	
+	if(!current_user_can('level_10'))
+		wp_die('Permission Deny.');
 }
 
 //short code parse
