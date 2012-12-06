@@ -1,4 +1,3 @@
-
 var $wsAliFrontArr = [];
 $wsAliFrontArr['payto_path'] = '/wp-content/plugins/alipay/includes/tpl.cart.php?';
 //$wsAliFrontArr['arr_query']  = ['proid','email','num','msg','extra','addr','tel','ordname','postcode','nonce'];
