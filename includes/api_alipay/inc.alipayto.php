@@ -90,6 +90,11 @@ else
 	
 if($alipay_service=='create_partner_trade_by_buyer' || $alipay_service=='trade_create_by_buyer')
 {
+	if(empty($orderInfo['ordname'])) $orderInfo['ordname']=='会员';
+	if(empty($orderInfo['address'])) $orderInfo['address']=='收货人地址';
+	if(empty($orderInfo['postcode'])) $orderInfo['postcode']=='123456';
+	if(empty($orderInfo['phone'])) $orderInfo['postcode']=='13312341234';
+	
 	$receive_name		= $orderInfo['ordname'];			//收货人姓名，如：张三
 	$receive_address	= $orderInfo['address'];			//收货人地址，如：XX省XXX市XXX区XXX路XXX小区XXX栋XXX单元XXX号
 	$receive_zip		= $orderInfo['postcode'];				//收货人邮编，如：123456
