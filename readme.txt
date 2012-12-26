@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: waisir 
 Donate link: http://www.waisir.com/donate
 Tags: alipay,tenpay,paypal,e-commerce,cart,shop,支付宝,财付通
@@ -17,7 +17,7 @@ A well-supported Alipay, Tenpay and Paypal plugin,which devote to doing with adv
 * 3.0版本增加了邮件客服超链接设置.
 * 3.0版本增加了支付宝多接口一键切换.
 * 3.0版本修复了自动发货相关BUG.
-* 3.0版本修复了平台订单号相关BUG.
+* 3.0版本修复了平台订单号相关BUG..
 
 = 链接表 = 
 * [歪世界-Home page of the Author](http://www.waisir.com/ "作者主页")
