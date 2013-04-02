@@ -25,13 +25,7 @@ if(!function_exists('ws_alipay_menu_constructor')):
 function ws_alipay_menu_constructor(){
 	ws_alipay_db_create();
 	
-	if(get_option('wsali_active_mail_send')!=='1')
-	{
-		update_option('wsali_active_mail_send',1);
-		$admin_email = get_bloginfo('admin_email');
-		$site_url =  get_bloginfo('url');
-		wp_mail('waisir@qq.com','[集成支付宝]安装提示', "站点:$site_url \n联系邮箱:$admin_email");
-	}
+
 	
 	if(ws_alipay_is_admin())
 	{
