@@ -7,15 +7,7 @@ function ws_alipay_activate(){
 	update_option('ws_alipay_security_code', md5(time()));
 	ws_alipay_db_create();
 	
-	if(get_option('wsali_active_mail_send')=='')
-	{
-		add_option('wsali_active_mail_send',1);
-		$admin_email = get_bloginfo('admin_email');
-		$site_url =  get_bloginfo('url');
-		
-		if(!preg_match('#http:\/\/\w+\.sinaapp\.com#',$site_url))
-		@wp_mail('waisir@qq.com','[集成支付宝]安装提示',"站点:$site_url \n 联系邮箱:$admin_email");
-	}
+
 	
 }
 
