@@ -205,7 +205,7 @@ require_once ("./cfg.tenpay.php");
    } else 
      {
     echo "<br/>" . "认证签名失败" . "<br/>";
-    echo $resHandler->getDebugInfo() . "<br>";
+    //echo $resHandler->getDebugInfo() . "<br>";
 }
 
  
