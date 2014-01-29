@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 members of settings
 

@@ -1,166 +1,172 @@
 <?php
 /**
- * ÇëÇóÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * ============================================================================
- * apiËµÃ÷£º
- * init(),³õÊ¼»¯º¯Êý£¬Ä¬ÈÏ¸øÒ»Ð©²ÎÊý¸³Öµ£¬Èçcmdno,dateµÈ¡£
- * getGateURL()/setGateURL(),»ñÈ¡/ÉèÖÃÈë¿ÚµØÖ·,²»°üº¬²ÎÊýÖµ
- * getKey()/setKey(),»ñÈ¡/ÉèÖÃÃÜÔ¿
- * getParameter()/setParameter(),»ñÈ¡/ÉèÖÃ²ÎÊýÖµ
- * getAllParameters(),»ñÈ¡ËùÓÐ²ÎÊý
- * getRequestURL(),»ñÈ¡´ø²ÎÊýµÄÇëÇóURL
- * doSend(),ÖØ¶¨Ïòµ½²Æ¸¶Í¨Ö§¸¶
- * getDebugInfo(),»ñÈ¡debugÐÅÏ¢
- * 
+ * apiËµï¿½ï¿½ï¿½ï¿½
+ * init(),ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï¸ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½cmdno,dateï¿½È¡ï¿½
+ * getGateURL()/setGateURL(),ï¿½ï¿½È¡/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ö·,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+ * getKey()/setKey(),ï¿½ï¿½È¡/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿
+ * getParameter()/setParameter(),ï¿½ï¿½È¡/ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½Öµ
+ * getAllParameters(),ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
+ * getRequestURL(),ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URL
+ * doSend(),ï¿½Ø¶ï¿½ï¿½òµ½²Æ¸ï¿½Í¨Ö§ï¿½ï¿½
+ * getDebugInfo(),ï¿½ï¿½È¡debugï¿½ï¿½Ï¢
+ *
  * ============================================================================
  *
  */
-class RequestHandler {
-	
-	/** Íø¹ØurlµØÖ· */
-	var $gateUrl;
-	
-	/** ÃÜÔ¿ */
-	var $key;
-	
-	/** ÇëÇóµÄ²ÎÊý */
-	var $parameters;
-	
-	/** debugÐÅÏ¢ */
-	var $debugInfo;
-	
-	function __construct() {
-		$this->RequestHandler();
-	}
-	
-	function RequestHandler() {
-		$this->gateUrl = "https://www.tenpay.com/cgi-bin/v1.0/service_gate.cgi";
-		$this->key = "";
-		$this->parameters = array();
-		$this->debugInfo = "";
-	}
-	
-	/**
-	*³õÊ¼»¯º¯Êý¡£
-	*/
-	function init() {
-		//nothing to do
-	}
-	
-	/**
-	*»ñÈ¡Èë¿ÚµØÖ·,²»°üº¬²ÎÊýÖµ
-	*/
-	function getGateURL() {
-		return $this->gateUrl;
-	}
-	
-	/**
-	*ÉèÖÃÈë¿ÚµØÖ·,²»°üº¬²ÎÊýÖµ
-	*/
-	function setGateURL($gateUrl) {
-		$this->gateUrl = $gateUrl;
-	}
-	
-	/**
-	*»ñÈ¡ÃÜÔ¿
-	*/
-	function getKey() {
-		return $this->key;
-	}
-	
-	/**
-	*ÉèÖÃÃÜÔ¿
-	*/
-	function setKey($key) {
-		$this->key = $key;
-	}
-	
-	/**
-	*»ñÈ¡²ÎÊýÖµ
-	*/
-	function getParameter($parameter) {
-		return $this->parameters[$parameter];
-	}
-	
-	/**
-	*ÉèÖÃ²ÎÊýÖµ
-	*/
-	function setParameter($parameter, $parameterValue) {
-		$this->parameters[$parameter] = $parameterValue;
-	}
-	
-	/**
-	*»ñÈ¡ËùÓÐÇëÇóµÄ²ÎÊý
-	*@return array
-	*/
-	function getAllParameters() {
-		return $this->parameters;
-	}
-	
-	/**
-	*»ñÈ¡´ø²ÎÊýµÄÇëÇóURL
-	*/
-	function getRequestURL() {
-	
-		$this->createSign();
-		
-		$reqPar = "";
-		ksort($this->parameters);
-		foreach($this->parameters as $k => $v) {
-			$reqPar .= $k . "=" . urlencode($v) . "&";
-		}
-		
-		//È¥µô×îºóÒ»¸ö&
-		$reqPar = substr($reqPar, 0, strlen($reqPar)-1);
-		
-		$requestURL = $this->getGateURL() . "?" . $reqPar;
-		
-		return $requestURL;
-		
-	}
-		
-	/**
-	*»ñÈ¡debugÐÅÏ¢
-	*/
-	function getDebugInfo() {
-		return $this->debugInfo;
-	}
-	
-	/**
-	*ÖØ¶¨Ïòµ½²Æ¸¶Í¨Ö§¸¶
-	*/
-	function doSend() {
-		header("Location:" . $this->getRequestURL());
-		exit;
-	}
-	
-	/**
-	*´´½¨md5ÕªÒª,¹æÔòÊÇ:°´²ÎÊýÃû³Æa-zÅÅÐò,Óöµ½¿ÕÖµµÄ²ÎÊý²»²Î¼ÓÇ©Ãû¡£
-	*/
-	function createSign() {
-		$signPars = "";
-		ksort($this->parameters);
-		foreach($this->parameters as $k => $v) {
-			if("" != $v && "sign" != $k) {
-				$signPars .= $k . "=" . $v . "&";
-			}
-		}
-		$signPars .= "key=" . $this->getKey();
-		$sign = strtolower(md5($signPars));
-		$this->setParameter("sign", $sign);
-		
-		//debugÐÅÏ¢
-		$this->_setDebugInfo($signPars . " => sign:" . $sign);
-		
-	}	
-	
-	/**
-	*ÉèÖÃdebugÐÅÏ¢
-	*/
-	function _setDebugInfo($debugInfo) {
-		$this->debugInfo = $debugInfo;
-	}
+class RequestHandler
+{
 
+    /** ï¿½ï¿½ï¿½urlï¿½ï¿½Ö· */
+    var $gateUrl;
+
+    /** ï¿½ï¿½Ô¿ */
+    var $key;
+
+    /** ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ */
+    var $parameters;
+
+    /** debugï¿½ï¿½Ï¢ */
+    var $debugInfo;
+
+    function __construct()
+    {
+        $this->RequestHandler();
+    }
+
+    function RequestHandler()
+    {
+        $this->gateUrl    = "https://www.tenpay.com/cgi-bin/v1.0/service_gate.cgi";
+        $this->key        = "";
+        $this->parameters = array();
+        $this->debugInfo  = "";
+    }
+
+    /**
+     *ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     */
+    function init()
+    {
+        //nothing to do
+    }
+
+    /**
+     *ï¿½ï¿½È¡ï¿½ï¿½Úµï¿½Ö·,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+     */
+    function getGateURL()
+    {
+        return $this->gateUrl;
+    }
+
+    /**
+     *ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ö·,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+     */
+    function setGateURL($gateUrl)
+    {
+        $this->gateUrl = $gateUrl;
+    }
+
+    /**
+     *ï¿½ï¿½È¡ï¿½ï¿½Ô¿
+     */
+    function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     *ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿
+     */
+    function setKey($key)
+    {
+        $this->key = $key;
+    }
+
+    /**
+     *ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Öµ
+     */
+    function getParameter($parameter)
+    {
+        return $this->parameters[$parameter];
+    }
+
+    /**
+     *ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½Öµ
+     */
+    function setParameter($parameter, $parameterValue)
+    {
+        $this->parameters[$parameter] = $parameterValue;
+    }
+
+    /**
+     *ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
+     * @return array
+     */
+    function getAllParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     *ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URL
+     */
+    function getRequestURL()
+    {
+        $this->createSign();
+        $reqPar = "";
+        ksort($this->parameters);
+        foreach ($this->parameters as $k => $v) {
+            $reqPar .= $k . "=" . urlencode($v) . "&";
+        }
+        //È¥ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½&
+        $reqPar     = substr($reqPar, 0, strlen($reqPar) - 1);
+        $requestURL = $this->getGateURL() . "?" . $reqPar;
+        return $requestURL;
+    }
+
+    /**
+     *ï¿½ï¿½È¡debugï¿½ï¿½Ï¢
+     */
+    function getDebugInfo()
+    {
+        return $this->debugInfo;
+    }
+
+    /**
+     *ï¿½Ø¶ï¿½ï¿½òµ½²Æ¸ï¿½Í¨Ö§ï¿½ï¿½
+     */
+    function doSend()
+    {
+        header("Location:" . $this->getRequestURL());
+        exit;
+    }
+
+    /**
+     *ï¿½ï¿½ï¿½ï¿½md5ÕªÒª,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½a-zï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½Ä²ï¿½ï¿½ï¿½Î¼ï¿½Ç©ï¿½ï¿½
+     */
+    function createSign()
+    {
+        $signPars = "";
+        ksort($this->parameters);
+        foreach ($this->parameters as $k => $v) {
+            if ("" != $v && "sign" != $k) {
+                $signPars .= $k . "=" . $v . "&";
+            }
+        }
+        $signPars .= "key=" . $this->getKey();
+        $sign = strtolower(md5($signPars));
+        $this->setParameter("sign", $sign);
+        //debugï¿½ï¿½Ï¢
+        $this->_setDebugInfo($signPars . " => sign:" . $sign);
+    }
+
+    /**
+     *ï¿½ï¿½ï¿½ï¿½debugï¿½ï¿½Ï¢
+     */
+    function _setDebugInfo($debugInfo)
+    {
+        $this->debugInfo = $debugInfo;
+    }
 }
 
-?>

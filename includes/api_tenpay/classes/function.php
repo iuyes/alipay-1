@@ -1,14 +1,12 @@
 <?php
 
-// Çë×¢Òâ·þÎñÆ÷ÊÇ·ñ¿ªÍ¨fopenÅäÖÃ
-function  log_result($word) {
-    $fp = fopen("log.txt","a");
-    flock($fp, LOCK_EX) ;
-    fwrite($fp,"Ö´ÐÐÈÕÆÚ£º".strftime("%Y%m%d%H%M%S",time())."\n".$word."\n\n");
+// ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Í¨fopenï¿½ï¿½ï¿½ï¿½
+function  log_result($word)
+{
+    $fp = fopen("log.txt", "a");
+    flock($fp, LOCK_EX);
+    fwrite($fp, "Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½" . strftime("%Y%m%d%H%M%S", time()) . "\n" . $word . "\n\n");
     flock($fp, LOCK_UN);
     fclose($fp);
 }
 
-
-
-?>
