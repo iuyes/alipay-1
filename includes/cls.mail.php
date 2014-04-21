@@ -147,7 +147,7 @@ if (!class_exists('WS_Alipay_Mail')):
                     $this->tip['MSG_20']  = '买家已经完成付款, 但订购的商品自动货源已经为空, 当前处于"等待发货"状态。<br />请积极与客户取得联系!人工完成发货(客户的信息可以在支付平台上查询到)';
                     break;
             }
-            die($this->generateHtml());
+            //die($this->generateHtml());
             return wp_mail($receiver, $this->tip['SUBJECT'], $this->generateHtml(), $headers);
         }
 
