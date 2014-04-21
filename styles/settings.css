@@ -98,13 +98,13 @@
 	border:solid 1px #CCC;
 	border-radius:5px;
 	position:relative;
-	background-image:url(images/alipay_wm.png);
+	background-image:url(images/alipay_wm-1.png);
 }
 .ws_alipay_main_wrap{
 	border:solid 1px #CCC;
 	border-radius:5px;
 	margin-top:10px;
-	background-image:url(images/alipay_wm.png);
+	background-image:url(images/alipay_wm-1.png);
 }
 
 #ws_alipay_main_wrap *{
@@ -134,7 +134,7 @@
 #ws_alipay_menu li{
 	margin:0;
 	float:left;
-	width:100px;
+	width:120px;
 }
 .ws_alipay_menu_a, .ws_alipay_menu_a_nojs{
 	float:left;
@@ -164,6 +164,13 @@
 #ws_alipay_main_wrap h1{
 	background:#F7F7F7
 }
+.ws_alipay_main_wrap{
+	min-height: 600px;
+}
+.ws_alipay_main_wrap.wrap h2{
+	padding-left: 20px;
+}
+
 #ws_alipay_logo{
 	position:absolute;
 	right:40px;

@@ -60,7 +60,7 @@ if (!function_exists('ws_alipay_admin_init')):
     {
         //wp_register_script('ws_alipay_settings_js', WS_ALIPAY_URL . '/javascripts/settings.js',array('jquery') );
         wp_register_script('ws_alipay_admin_js', WS_ALIPAY_URL . '/javascripts/admin.js', array('jquery'));
-        wp_register_style('ws_aplipay_settings_css', WS_ALIPAY_URL . '/styles/settings.css');
+        wp_register_style('ws_alipay_settings_css', WS_ALIPAY_URL . '/styles/settings.css?v=2');
     }
 
 endif;
@@ -98,7 +98,7 @@ if (!function_exists('ws_alipay_admin_header')):
     {
         if (isset($_GET['page']) && $_GET['page'] == 'ws_alipay') {
             wp_enqueue_script('ws_alipay_admin_js');
-            wp_enqueue_style('ws_aplipay_settings_css');
+            wp_enqueue_style('ws_alipay_settings_css');
         }
     }
 
@@ -845,6 +845,9 @@ function ws_alipay_isTodelete()
 function ws_alipay_is_admin()
 {
     $user = wp_get_current_user();
+    if(!$user){
+        return false;
+    }
     return $user->has_cap('activate_plugins');
 }
 

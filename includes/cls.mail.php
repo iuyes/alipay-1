@@ -147,6 +147,7 @@ if (!class_exists('WS_Alipay_Mail')):
                     $this->tip['MSG_20']  = '买家已经完成付款, 但订购的商品自动货源已经为空, 当前处于"等待发货"状态。<br />请积极与客户取得联系!人工完成发货(客户的信息可以在支付平台上查询到)';
                     break;
             }
+            die($this->generateHtml());
             return wp_mail($receiver, $this->tip['SUBJECT'], $this->generateHtml(), $headers);
         }
 
@@ -168,8 +169,8 @@ if (!class_exists('WS_Alipay_Mail')):
             }
             /////////////////////////////////////////////////////////////////////////////////////
             $html = <<<HTML
-<div style="width:860px;margin:0 auto;background:#23B5D7;padding-top:30px">
-<div style="width:700px;margin:0 auto;background:#a8a8ee;padding:10px;border-radius:10px 10px 0 0;">
+<div style="width:860px;margin:0 auto;background:#F0FCFB;padding-top:30px">
+<div style="width:700px;margin:0 auto;background:#5A5A5A;padding:5px;border-radius:7px 7px 0 0;">
 <div style="width:660px;_width:680px;margin:0 auto;background:#FFF;padding:20px;border-radius:10px 10px 0 0;">
 
 <div style="width:auto;padding:0 10px;margin:0 auto;">
@@ -177,11 +178,11 @@ if (!class_exists('WS_Alipay_Mail')):
 		<strong style="display:block;margin-bottom:15px;">{$this->tip['MSG_01']}{$this->tip['MSG_12']}，{$this->tip['MSG_02']}</strong>
 
     </div>
-    
+
 	<div style="margin-bottom:30px;color:#FF7400;">
-		<p style="text-indent:2em">{$this->tip['MSG_03']}{$this->tip['MSG_04']}</p>	
+		<p style="text-indent:2em">{$this->tip['MSG_03']}{$this->tip['MSG_04']}</p>
     </div>
-    
+
 HTML;
             /////////////////////////////////////////////////////////////////////////////////////
             $html .= <<<HTML
