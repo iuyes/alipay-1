@@ -362,9 +362,9 @@ function ws_alipay_buyerInfo_fn($info)
 
 $arr_buyInfo = array(
     'ALIPAY' => array('支付宝', 1),
-    'TENPAY' => array('财付通', 0),
-    'PAYPAL' => array('PayPal', 0),
-    'UNION'  => array('网银直联', 0),
+    //'TENPAY' => array('财付通', 0),
+    //'PAYPAL' => array('PayPal', 0),
+    //'UNION'  => array('网银直联', 0),
 );
 
 //银行列表显示开关
